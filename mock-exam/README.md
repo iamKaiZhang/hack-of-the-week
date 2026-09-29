@@ -1,90 +1,91 @@
 # mock-exam
 
-Pilot a new exam on a class of simulated students before real students see it.
+Pilot a new exam on simulated students before real students see it. Persona agents study the course materials and sit the exam, blind graders mark it against your solution, and two analysts turn the results into proposed edits to the exam.
 
-Each student is an agent playing a persona: a background, a level, how much of the course they studied, their strengths, weaknesses and misconceptions, and how they behave under time pressure. They read the course materials they studied, sit the exam against a clock, and fill in a feedback survey. Blind graders mark every script against your solution, two analysts turn the results into concrete edits, and a script builds a dashboard.
+Simulated students score higher than real ones, so read the grades as relative. The reliable signals are about the exam itself: ambiguous wording, questions that take longer than their points suggest, errors, and scope mismatches.
 
-**What to trust.** LLM students are stronger than their personas intend, so the grade distribution is not a forecast. The useful signals are about the exam itself: wording that allows two readings, questions that take far longer than their points, errors, and scope mismatches. The dashboard leads with those.
+## Start a mock exam
 
-## Quick start
+Open Claude Code in this folder (`claude`) and accept the trust prompt, which the hooks need. Then ask:
 
-1. Open Claude Code in this folder and accept the trust prompt. The trust is needed for the hook that keeps students away from the solutions.
-2. Preview the dashboard on synthetic demo data (hand-written, no agents involved):
-   ```bash
-   python3 scripts/build_dashboard.py tests/fixtures/demo-run --output runs/demo-dashboard.html && open runs/demo-dashboard.html
-   ```
-3. Smoke-test the real pipeline on the example exam with three students by asking Claude:
-   ```text
-   Run /mock-exam on the example exam with lena, sofia and tobias.
-   ```
-   (`/mock-exam example` runs every persona card in `personas/`.) Watch it with `/workflows`. The example exam contains two planted flaws (Q1 says “dominated” without strict or weak; Q2c asks for “the equilibrium payoff” of a game with three equilibria), so a working run should flag both.
-4. Open `runs/example/<run_id>/dashboard.html`.
+```text
+Run /mock-exam on the example exam with lena, sofia and tobias.
+```
 
-## Follow a run live
+The students study, sit the exam, and hand in answers and feedback; graders mark each script; the analysts then report the issues they found and the edits they recommend. Claude summarizes these when the run ends. Everything is saved in `runs/<exam>/<run_id>/`, with the findings in `analysis/feedback.json` and `analysis/recommendations.json`.
 
-From the `mock-exam` folder (or from anywhere, with the script's full path):
+More prompts:
+
+```text
+Run /mock-exam on my-exam with all personas.
+```
+
+```text
+Run /mock-exam on my-exam with yusuf, hannah, lena and sofia, and label the run pilot.
+```
+
+```text
+Run /mock-exam on my-exam with lena, sofia and tobias. When it finishes, list the three most important issues the analysts found.
+```
+
+The exam is a folder name under `exams/`, and the students are persona ids from `personas/`. Without a list, a run uses the exam's `personas` setting, or every card.
+
+Start with three or four students. Every student reads all their materials, so cost grows with students × materials.
+
+The example exam has two planted flaws, and a working run flags both:
+- Q1 says "dominated" without saying strict or weak.
+- Q2c asks for "the equilibrium payoff" of a game with three equilibria.
+
+## Your own exam
+
+1. Copy `exams/example/` to `exams/<exam-id>/`. Add the exam without solutions, and the solution or rubric with `solution` or `rubric` in its file name.
+2. Put the course materials in `materials/<course>/`.
+3. In `exam.toml`, set:
+   - the duration and allowed aids;
+   - the questions with their points;
+   - the solution files;
+   - the materials in lecture order, each with a `week`.
+
+Students see only three things:
+- their persona card;
+- the materials their `coverage` reaches;
+- the exam, once they have read those materials.
+
+The materials are put away when the exam opens, unless `open_book = true`. A hook enforces all of this.
+
+Exams, materials and runs are gitignored; only the example is tracked. The agents send what they read to the model provider, so check your institution's rules for unreleased exams.
+
+## Personas
+
+One card per student in `personas/<id>.toml`. The fields that matter most:
+
+| Field | Effect |
+|---|---|
+| `ability` | top 10%, above median, median, below median or bottom quarter; the student performs at that level (anchor it with the exam's `typical_score`) |
+| `background`, `focus` | prior knowledge beyond the course |
+| `preparation.coverage` | share of the course studied, which decides the materials |
+| `profile.misconceptions` | beliefs applied without flagging them, the source of realistic mistakes |
+| `exam_behavior` | speed and question order, which drive the simulated clock |
+| `model` | optional, e.g. `"haiku"` for a weaker student (default `sonnet`) |
+
+## How it works
+
+```
+prepare_run.py → student ×N → grader ×N → analyze_run.py → feedback-analyst → exam-reviewer
+```
+
+- `.claude/workflows/mock-exam.js` runs the pipeline. Each answer sheet goes to a grader as soon as it is handed in.
+- `.claude/agents/`: `student`, `grader` (blind, flags ambiguous wording), `feedback-analyst` and `exam-reviewer`. Graders and analysts run on Opus; change `model:` in their files to save cost.
+- `.claude/hooks/`: `guard_student.py` controls what students may read and write, and `log_activity.py` records what the agents do.
+
+Tests: `python3 -m unittest discover tests`
+
+## Optional: dashboard
+
+Each run also ends with a `dashboard.html` in its folder, for browsing students, answers and questions. To follow a run while it is in progress:
 
 ```bash
 python3 scripts/live_server.py
 ```
 
-Then open http://localhost:8131 and pick the run. If the port is taken, add `--port 8132`. The page, styled after the Claude Code docs explorer, refreshes every few seconds:
-
-- **Progress:** each pipeline stage with its counts, plus one row per student showing their current step (studying, sitting the exam, writing feedback, being graded) and their last action.
-- **Explorer:** a sidebar of students (by level) and questions (by exercise), with a panel for whichever you pick. A student's panel shows their profile, score and every answer, with the grader's note and any ambiguity flag. A question's panel shows its statistics, issues, the suggested change and all students' answers.
-- **Filling in:** the heatmap, recommendations and quotes fill in as grades and analysis arrive.
-
-The server only listens on your own machine and serves run data only, never exam or solution files. Agent actions come from `runs/activity.jsonl`, which a hook appends to on every file read or write by a student, grader or analyst.
-
-## Your own exam
-
-1. Copy `exams/example/` to `exams/<exam-id>/`. Put the compiled exam (without solutions) and the solution or rubric there.
-2. Put the course materials in `materials/<course>/`.
-3. Edit `exams/<exam-id>/exam.toml`: duration, aids, questions with points, solution files, and materials in lecture order with a `week` each. The week lets a persona who studied 60% of the course get only the first 60% of the materials.
-4. Run `/mock-exam <exam-id>`. With no persona list it uses every card in `personas/`.
-
-**What students can see is set in `exam.toml`.** A student can read only three things:
-
-- its own persona card;
-- the `materials` its coverage reaches (entries without a `week` go to everyone);
-- the exam, and only after it has read all of those materials. Once the exam is open, the materials are put away, unless the exam sets `open_book = true`.
-
-To hand out exercise sheets, a formula sheet or old exams, add them to `materials`. A hook enforces all of this, and it also stops students from writing anything except their own answer sheet and feedback.
-
-Exams, materials and runs are gitignored (only the example is tracked), so an unreleased exam does not end up on GitHub by accident. The agents do send what they read to the model provider, so check your institution's rules for unreleased exams.
-
-## How it works
-
-```
-prepare_run.py ─► student ×N ─► grader ×N ─► analyze_run.py ─► feedback-analyst ─► exam-reviewer ─► build_dashboard.py
-  run folder,      answers/       grades/      stats.json        feedback.json       recommendations.json   dashboard.html
-  anonymous ids    feedback/
-```
-
-- `.claude/workflows/mock-exam.js` orchestrates everything. Each student's script goes to a grader as soon as it is handed in; the analysis waits for the whole class.
-- `.claude/agents/`: `student` (in character, Read and Write only, no CLAUDE.md), `grader` (blind, rubric-bound, flags ambiguous wording), `feedback-analyst` (clusters feedback into issues with evidence), `exam-reviewer` (turns issues into concrete edits).
-- `.claude/hooks/guard_student.py` blocks the student agent from reading solutions, rubrics, other students' files or anything outside the project.
-- `scripts/`: run preparation, statistics (score, time against the per-question budget, clarity, discrimination) and the dashboard (`dashboard_template.html`, one self-contained file with no server needed).
-
-## Personas
-
-Cards live in `personas/<id>.toml`. Copy one and edit it. The fields that shape behavior most:
-
-- `ability`: where the student stands in the class (top 10%, above median, median, below median, bottom quarter). The student agent performs at that level; set the exam's `typical_score` (median share of points) to anchor it.
-- `background` and `focus`: home discipline and main interest (e.g. mathematics, markets). They set the prior knowledge a student brings beyond the course.
-- `preparation.coverage`: share of the course studied, in lecture order. Decides which materials the student gets.
-- `profile.misconceptions`: beliefs the student applies without flagging them. This is where realistic mistakes come from.
-- `exam_behavior.speed` and `strategy`: drive the simulated clock and the order of questions.
-- `model` (optional): e.g. `"haiku"` for a weaker student. The default comes from the exam's `student_model` (`sonnet`).
-
-## Cost
-
-Every student reads their materials in full, so tokens grow with materials × students. Start with three students. Graders and analysts run on Opus; change `model:` in `.claude/agents/*.md` to trade quality for cost.
-
-## Tests
-
-```bash
-python3 -m unittest discover tests
-```
-
-These cover the deterministic parts: materials selection, run preparation, statistics, the guard hook and the dashboard build.
+Then open http://localhost:8131 (add `--port 8132` if the port is taken).
