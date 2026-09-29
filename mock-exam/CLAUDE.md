@@ -12,7 +12,7 @@ Pilot a newly written exam on a class of simulated students before real students
 4. **Analyze**: `scripts/analyze_run.py` writes `analysis/stats.json`; `feedback-analyst` writes `analysis/feedback.json`; `exam-reviewer` writes `analysis/recommendations.json`.
 5. **Report**: `scripts/build_dashboard.py` writes `dashboard.html` (self-contained, opens from file://).
 
-Live view: `scripts/live_server.py` serves the same template in polling mode (`/run/<exam>/<run_id>`, data at `/api/...`). `scripts/progress.py` infers each student's stage from which files exist plus `runs/activity.jsonl`, which `.claude/hooks/log_activity.py` (PreToolUse, never blocks) appends to for the four pipeline agents. Agents are matched to students by the first file they touch: a student's persona card, a grader's answer sheet.
+Live view: `scripts/live_server.py` serves the same template in polling mode (`/run/<exam>/<run_id>`, data at `/api/...`). `scripts/progress.py` infers each student's stage from which files exist plus `runs/activity.jsonl`, which `.claude/hooks/log_activity.py` (PostToolUse, so only calls that ran; never blocks) appends to for the four pipeline agents, and to which the student guard adds the calls it blocks, marked `blocked`. Agents are matched to students by the first file they touch: a student's persona card, a grader's answer sheet.
 
 Optional args: `{exam, personas: [...], label}`. The JSON formats each agent writes are defined in its agent file; `scripts/analyze_run.py` and `scripts/dashboard_template.html` read them, so change all three together.
 
