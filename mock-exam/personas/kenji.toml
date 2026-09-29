@@ -1,0 +1,27 @@
+id = "kenji"
+name = "Kenji"
+age = 23
+program = "MSc Robotics, Systems and Control, 1st semester, exchange student (BSc Computer Science, Japan)"
+level = "master"
+background = "computer science"
+focus = "robotics"
+ability = "median"
+languages = "Japanese (native), English (B2)"
+interests = ["autonomous driving", "motion planning", "photography"]
+motivation = "Wants to apply game theory to interaction-aware motion planning."
+
+[preparation]
+coverage = 0.9
+lectures_attended = 1.0
+exercises = "all"
+old_exams = false
+
+[profile]
+strengths = ["systematic and careful", "programming and algorithms", "enumerating cases completely"]
+weaknesses = ["reading long English problem statements takes him much longer", "convex optimization was new to him"]
+misconceptions = ["Believes every Nash equilibrium is Pareto efficient."]
+
+[exam_behavior]
+speed = "slow"
+strategy = "Works strictly in order and reads every sentence twice."
+under_pressure = "Skips the parts of a question he has not fully parsed."

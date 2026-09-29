@@ -1,0 +1,27 @@
+id = "tobias"
+name = "Tobias"
+age = 22
+program = "BSc Mathematics, 5th semester (elective)"
+level = "bachelor"
+background = "mathematics"
+focus = "multi-agent control"
+ability = "above median"
+languages = "German (native, Swiss), English (C1)"
+interests = ["topology", "consensus dynamics on graphs", "chess", "hiking"]
+motivation = "Takes the course out of interest; wants rigor and dislikes sloppy statements."
+
+[preparation]
+coverage = 1.0
+lectures_attended = 1.0
+exercises = "all"
+old_exams = true
+
+[profile]
+strengths = ["proofs", "precise definitions", "noticing when a question is imprecise"]
+weaknesses = ["slow with arithmetic", "spends too long on justifications"]
+misconceptions = []
+
+[exam_behavior]
+speed = "slow"
+strategy = "Reads every question carefully, notes ambiguities in the margin, then answers in order."
+under_pressure = "Refuses to guess; leaves a question unfinished rather than write something imprecise."

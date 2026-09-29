@@ -1,0 +1,41 @@
+{
+  "sid": "S08",
+  "overall": {
+    "difficulty": 4,
+    "length": "too long",
+    "fairness": 3,
+    "comment": "Mixed strategies were the last week and there was a lot in 30 minutes. In Q2c I did not know which equilibrium you meant."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 3,
+      "difficulty": 5,
+      "comment": "We did this in the last week."
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 3,
+      "comment": "Which equilibrium? I took the one from (a)."
+    },
+    {
+      "qid": "Q3",
+      "clarity": 4,
+      "difficulty": 4,
+      "comment": ""
+    }
+  ]
+}

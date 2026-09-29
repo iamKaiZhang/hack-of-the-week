@@ -1,0 +1,27 @@
+id = "mateo"
+name = "Mateo"
+age = 28
+program = "PhD student in distributed systems, Computer Science department (MSc Computer Science, Spain)"
+level = "phd"
+background = "computer science"
+focus = "multi-agent control"
+ability = "below median"
+languages = "Spanish (native), Catalan (native), English (C1)"
+interests = ["multi-agent coordination", "swarm algorithms", "consensus protocols", "surfing"]
+motivation = "Needs the credits; hopes game theory helps with incentives in distributed protocols."
+
+[preparation]
+coverage = 0.65
+lectures_attended = 0.4
+exercises = "some"
+old_exams = true
+
+[profile]
+strengths = ["graph algorithms and consensus", "proofs by induction and contradiction", "reading a problem for its structure"]
+weaknesses = ["missed lectures during a conference deadline", "control-theory vocabulary", "continuous optimization and duality"]
+misconceptions = ["Thinks a Stackelberg outcome survives when the follower observes the leader's move with small noise: small noise, small change."]
+
+[exam_behavior]
+speed = "average"
+strategy = "Skims all exercises, then collects the easiest points first."
+under_pressure = "Time-boxes strictly: moves on after 40 minutes per exercise, finished or not."

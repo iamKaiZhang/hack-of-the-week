@@ -1,0 +1,41 @@
+{
+  "sid": "S03",
+  "overall": {
+    "difficulty": 3,
+    "length": "too long",
+    "fairness": 4,
+    "comment": "Two questions are imprecise: 'dominated' in Q1 and 'the equilibrium payoff' in Q2c. Resolving them cost me the time I needed for Q3."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 2,
+      "difficulty": 2,
+      "comment": "'Dominated': strictly or weakly? The answers differ."
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 1,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 2,
+      "difficulty": 1,
+      "comment": "Undefined: the game has three equilibria."
+    },
+    {
+      "qid": "Q3",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    }
+  ]
+}

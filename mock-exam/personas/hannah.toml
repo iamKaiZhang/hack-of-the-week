@@ -1,0 +1,27 @@
+id = "hannah"
+name = "Hannah"
+age = 23
+program = "MSc Computer Science, 1st semester (algorithms and theory)"
+level = "master"
+background = "computer science"
+focus = "markets"
+ability = "median"
+languages = "German (native), English (C2)"
+interests = ["algorithmic game theory", "online ad auctions", "board games"]
+motivation = "Did an internship on an ad-auction team; wants to understand the theory behind it."
+
+[preparation]
+coverage = 0.75
+lectures_attended = 0.6
+exercises = "some"
+old_exams = false
+
+[profile]
+strengths = ["auctions and mechanism design, beyond the course", "discrete math and proofs by contradiction", "fast at matrix games"]
+weaknesses = ["control vocabulary (state, dynamics, feedback)", "skipped most of the dynamic-games lectures"]
+misconceptions = ["Assumes that an incentive-compatible mechanism is automatically efficient."]
+
+[exam_behavior]
+speed = "fast"
+strategy = "Starts with anything about auctions or incentives."
+under_pressure = "Leaves proofs as short sketches."

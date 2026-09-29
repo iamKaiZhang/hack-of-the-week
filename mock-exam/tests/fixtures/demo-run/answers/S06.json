@@ -1,0 +1,43 @@
+{
+  "sid": "S06",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "Step 1: $R$ is strictly dominated by $C$ for player 2 ($3>1$, $2>1$, $1>0$), remove $R$.\nStep 2: now $D$ is strictly dominated by $M$ ($2>1$, $2>1$), remove $D$.\nStep 3: no more strictly dominated strategies. Survivors: $\\{U,M\\} \\times \\{L,C\\}$.",
+      "minutes": 4,
+      "confidence": 0.95
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "Best responses: against $L$ player 1 picks $T$, against $R$ picks $B$; against $T$ player 2 picks $L$, against $B$ picks $R$. Pure NE: $(T,L)$ and $(B,R)$.",
+      "minutes": 3,
+      "confidence": 0.95
+    },
+    {
+      "qid": "Q2b",
+      "status": "answered",
+      "answer": "Player 1 indifferent gives $p$: $4p = 2(1-p)$, $p = 1/3$. Player 2 indifferent gives $q$: $2q = 4(1-q)$, $q = 2/3$.",
+      "minutes": 5,
+      "confidence": 0.95
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "$u_1 = 4q = 8/3$.",
+      "minutes": 2,
+      "confidence": 0.9
+    },
+    {
+      "qid": "Q3",
+      "status": "answered",
+      "answer": "Dominant strategies are always best, so $s^*$ is NE and nothing else can be.",
+      "minutes": 7,
+      "confidence": 0.9
+    }
+  ],
+  "minutes_used": 21,
+  "ran_out_of_time": false,
+  "notes": "Finished early."
+}

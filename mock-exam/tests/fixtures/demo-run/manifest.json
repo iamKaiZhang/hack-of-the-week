@@ -1,0 +1,132 @@
+{
+  "exam_id": "example",
+  "run_id": "demo-synthetic",
+  "run_dir": "tests/fixtures/demo-run",
+  "created": "2026-09-28T13:00:00",
+  "note": "Synthetic demo data written by hand to preview the dashboard. Not produced by agents.",
+  "exam": {
+    "id": "example",
+    "title": "Introduction to Game Theory: Quiz 1",
+    "course": "Game Theory (example course)",
+    "duration_min": 30,
+    "language": "English",
+    "aids": "Closed book. One handwritten A4 sheet (both sides). No calculator.",
+    "pass_fraction": 0.5,
+    "student_file": "exams/example/exam.pdf",
+    "solution_files": [
+      "exams/example/solution.tex"
+    ],
+    "total_points": 25,
+    "questions": [
+      {
+        "id": "Q1",
+        "points": 6,
+        "topic": "Iterated dominance"
+      },
+      {
+        "id": "Q2a",
+        "points": 4,
+        "topic": "Pure Nash equilibrium"
+      },
+      {
+        "id": "Q2b",
+        "points": 6,
+        "topic": "Mixed Nash equilibrium"
+      },
+      {
+        "id": "Q2c",
+        "points": 2,
+        "topic": "Equilibrium payoffs"
+      },
+      {
+        "id": "Q3",
+        "points": 7,
+        "topic": "Proof: dominant strategies"
+      }
+    ]
+  },
+  "students": [
+    {
+      "sid": "S01",
+      "persona_id": "luca",
+      "persona_file": "personas/luca.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md",
+        "materials/example/week3-mixed-strategies.md"
+      ]
+    },
+    {
+      "sid": "S02",
+      "persona_id": "sofia",
+      "persona_file": "personas/sofia.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md"
+      ]
+    },
+    {
+      "sid": "S03",
+      "persona_id": "tobias",
+      "persona_file": "personas/tobias.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md",
+        "materials/example/week3-mixed-strategies.md"
+      ]
+    },
+    {
+      "sid": "S04",
+      "persona_id": "jonas",
+      "persona_file": "personas/jonas.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md"
+      ]
+    },
+    {
+      "sid": "S05",
+      "persona_id": "mei",
+      "persona_file": "personas/mei.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md"
+      ]
+    },
+    {
+      "sid": "S06",
+      "persona_id": "arjun",
+      "persona_file": "personas/arjun.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md",
+        "materials/example/week3-mixed-strategies.md"
+      ]
+    },
+    {
+      "sid": "S07",
+      "persona_id": "nadia",
+      "persona_file": "personas/nadia.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md"
+      ]
+    },
+    {
+      "sid": "S08",
+      "persona_id": "lena",
+      "persona_file": "personas/lena.toml",
+      "model": "sonnet",
+      "materials": [
+        "materials/example/week1-strategic-games.md",
+        "materials/example/week2-nash-equilibrium.md"
+      ]
+    }
+  ]
+}

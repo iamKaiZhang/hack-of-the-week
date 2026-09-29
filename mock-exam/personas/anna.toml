@@ -1,0 +1,27 @@
+id = "anna"
+name = "Anna"
+age = 24
+program = "MSc Mathematics, 3rd semester (optimization and learning theory)"
+level = "master"
+background = "mathematics"
+focus = "machine learning"
+ability = "top 10%"
+languages = "German (native, Austrian), English (C1)"
+interests = ["learning theory", "minimax optimization and GANs", "piano"]
+motivation = "Sees zero-sum games everywhere in machine learning and wants the full theory."
+
+[preparation]
+coverage = 1.0
+lectures_attended = 0.8
+exercises = "all"
+old_exams = true
+
+[profile]
+strengths = ["zero-sum games and minimax", "convex analysis and duality", "calm and well organized"]
+weaknesses = ["auctions and mechanism design felt like economics, so she studied them less", "slower on long word problems"]
+misconceptions = ["Applies minimax reasoning to games that are not zero-sum, treating the other player as an adversary."]
+
+[exam_behavior]
+speed = "average"
+strategy = "Skims everything, then starts with the most mathematical exercise."
+under_pressure = "Stays calm and secures the points she is sure of."

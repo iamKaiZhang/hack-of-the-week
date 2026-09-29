@@ -1,0 +1,42 @@
+{
+  "sid": "S03",
+  "questions": [
+    {
+      "qid": "Q1",
+      "points": 6,
+      "max_points": 6,
+      "justification": "Correct under the intended reading; the student explicitly notes the alternative reading.",
+      "ambiguity": "'Dominated' allows weak dominance, which yields (M, C) instead of {U,M} x {L,C}. The student noticed and chose strict."
+    },
+    {
+      "qid": "Q2a",
+      "points": 4,
+      "max_points": 4,
+      "justification": "Complete.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2b",
+      "points": 6,
+      "max_points": 6,
+      "justification": "Complete and correct.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2c",
+      "points": 2,
+      "max_points": 2,
+      "justification": "All three payoffs, labeled.",
+      "ambiguity": "'Player 1's equilibrium payoff' does not say which of the three equilibria is meant."
+    },
+    {
+      "qid": "Q3",
+      "points": 4,
+      "max_points": 7,
+      "justification": "NE part complete (3); uniqueness started with the right setup but unfinished (1 of 4).",
+      "ambiguity": null
+    }
+  ],
+  "total": 22,
+  "max_total": 25
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mock-exam-live",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["scripts/live_server.py", "--port", "8131"],
+      "port": 8131
+    }
+  ]
+}

@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock exam · __TITLE__</title>
+<!-- KaTeX renders the math in answers when online; without it the raw $...$ stays readable. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+/* Design language of the Claude Code docs explorer (code.claude.com/docs/en/claude-directory). */
+:root {
+  color-scheme: light dark;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --page: light-dark(#ffffff, #0f0f0e);
+  --accent: #D97757;
+  --accent-bg: rgba(217, 119, 87, .07);
+  --accent-border: rgba(217, 119, 87, .24);
+  --bg: light-dark(#ffffff, #1a1918);
+  --surface: light-dark(#FAFAF7, #232221);
+  --surface-hover: light-dark(#F0EEE6, #2e2d2b);
+  --border: light-dark(#E8E6DC, #3a3936);
+  --border-subtle: light-dark(#F0EEE6, #2e2d2b);
+  --text: light-dark(#141413, #e8e6dc);
+  --text-2: light-dark(#5E5D59, #c4c2b8);
+  --text-3: light-dark(#73726C, #9c9a92);
+  --text-4: light-dark(#9C9A92, #73726c);
+  --text-5: light-dark(#B8B6AE, #5e5d59);
+  --sep: light-dark(#D1CFC5, #4a4946);
+  --good: light-dark(#3d6b2e, #6fa85c);
+  --warn: light-dark(#b07520, #e8a45c);
+  --bad: light-dark(#b85c3a, #e08a60);
+  --info: light-dark(#4a7fb5, #8bb4e0);
+}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.6 var(--sans); }
+button { font: inherit; color: inherit; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+.page { max-width: 1280px; margin: 0 auto; padding: 36px 24px 64px; }
+.page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+h1 { font-family: var(--serif); font-weight: 500; font-size: 40px; line-height: 1.15; letter-spacing: -.3px; margin: 0 0 10px; }
+h2 { font-family: var(--serif); font-weight: 500; font-size: 26px; letter-spacing: -.2px; margin: 0; }
+.intro { color: var(--text-2); font-size: 18px; margin: 0 0 10px; max-width: 900px; }
+.meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-family: var(--mono); font-size: 13px; color: var(--text-4); }
+#theme-toggle { border: 1px solid var(--border); background: var(--surface); color: var(--text-3); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12px; flex-shrink: 0; margin-top: 10px; }
+section { margin-top: 44px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.hint { color: var(--text-3); font-size: 14px; margin: 0; }
+.mono { font-family: var(--mono); }
+.frame { border: 1px solid var(--border); border-radius: 12px; background: var(--bg); overflow: hidden; }
+.empty { padding: 20px 22px; color: var(--text-3); font-size: 15px; }
+
+.badge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; padding: 2px 6px; border-radius: 4px; border: .5px solid; white-space: nowrap; line-height: 1.5; }
+.badge.accent { color: var(--accent); border-color: var(--accent-border); background: var(--accent-bg); }
+.badge.good { color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, transparent); background: color-mix(in srgb, var(--good) 8%, transparent); }
+.badge.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 35%, transparent); background: color-mix(in srgb, var(--warn) 8%, transparent); }
+.badge.bad { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); background: color-mix(in srgb, var(--bad) 8%, transparent); }
+.badge.info { color: var(--info); border-color: color-mix(in srgb, var(--info) 35%, transparent); background: color-mix(in srgb, var(--info) 8%, transparent); }
+.badge.muted { color: var(--text-3); border-color: var(--border); background: var(--surface); }
+.badge .p { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1.4s ease-in-out infinite; }
+
+/* Summary cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 26px; }
+.card { border: 1px solid var(--border); border-top: 4px solid var(--c); border-radius: 12px; background: var(--bg); padding: 14px 16px 12px; }
+.card .n { font-size: 30px; font-weight: 650; letter-spacing: -.5px; line-height: 1.2; color: var(--c); }
+.card .l { font-size: 14px; color: var(--text-3); margin-top: 2px; }
+
+/* Progress */
+.stepper { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 18px 20px 16px; gap: 0; }
+.step { position: relative; padding-right: 14px; }
+.step::after { content: ""; position: absolute; top: 10px; left: 28px; right: 6px; height: 1px; background: var(--sep); }
+.step:last-child::after { display: none; }
+.step.done::after { background: var(--good); }
+.step .ic { position: relative; z-index: 1; width: 21px; height: 21px; border-radius: 50%; border: 1.5px solid var(--sep); background: var(--bg); display: grid; place-items: center; font: 600 11px var(--mono); color: var(--text-4); }
+.step.done .ic { background: var(--good); border-color: var(--good); color: var(--bg); }
+.step.active .ic { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-bg); }
+.step .lbl { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--text-3); margin-top: 8px; }
+.step.active .lbl { color: var(--accent); }
+.step.done .lbl { color: var(--text); }
+.step .det { font-size: 13px; color: var(--text-4); }
+.step .bar { margin-top: 6px; }
+.bar { position: relative; height: 4px; border-radius: 2px; background: var(--border-subtle); overflow: hidden; }
+.bar i { position: absolute; inset: 0 auto 0 0; border-radius: 2px; background: var(--accent); transition: width .5s ease; }
+.bar .budget { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1.5px; background: var(--text-4); }
+.elapsed { padding: 0 20px 14px; font-size: 13px; color: var(--text-4); font-family: var(--mono); }
+.agents { border-top: 1px solid var(--border-subtle); }
+.agent { display: grid; grid-template-columns: 40px minmax(90px, 130px) 88px minmax(150px, 210px) minmax(0, 1fr); align-items: center; gap: 12px; padding: 6px 20px; border-bottom: 1px solid var(--border-subtle); cursor: pointer; font-size: 14px; }
+.agent:last-child { border-bottom: none; }
+.agent:hover { background: var(--surface); }
+.agent .sid, .agent .act { font-family: var(--mono); font-size: 12.5px; color: var(--text-4); }
+.agent .nm { font-weight: 550; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.agent .stg { color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.agent.active .stg { color: var(--accent); }
+.agent .act { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.segs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.segs i { height: 4px; border-radius: 2px; background: var(--border); }
+.segs i.done { background: var(--good); }
+.segs i.active { background: var(--accent); animation: pulse 1.4s ease-in-out infinite; }
+.segs i.fail { background: var(--bad); }
+.analysts { display: flex; gap: 18px; flex-wrap: wrap; padding: 10px 20px; border-top: 1px solid var(--border-subtle); background: var(--surface); font-size: 13.5px; color: var(--text-3); }
+.analysts span.a { display: inline-flex; align-items: center; gap: 7px; }
+.analysts b { color: var(--text-2); font-weight: 600; }
+.sdot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-5); }
+.sdot.done { background: var(--good); }
+.sdot.active { background: var(--accent); animation: pulse 1.4s ease-in-out infinite; }
+
+/* Explorer: sidebar tree + detail panel */
+.ce-root { border-radius: 12px; border: 1px solid var(--border); background: var(--bg); display: flex; height: min(80vh, 860px); overflow: hidden; }
+.ce-side { width: min(300px, 36%); min-width: 230px; flex-shrink: 0; border-right: 1px solid var(--border-subtle); background: var(--surface); display: flex; flex-direction: column; }
+.ce-tabs { padding: 8px 8px 4px; border-bottom: 1px solid var(--border-subtle); display: flex; gap: 4px; }
+.ce-tab { flex: 1; padding: 6px 0; border-radius: 6px; border: none; cursor: pointer; font-family: var(--mono); font-size: 13px; background: transparent; color: var(--text-4); }
+.ce-tab.active { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+.ce-tree { padding: 6px 0; overflow-y: auto; flex: 1; }
+.ce-folder { display: flex; align-items: center; gap: 4px; width: 100%; padding: 5px 8px; border: none; background: transparent; cursor: pointer; text-align: left; font-family: var(--mono); font-size: 14px; color: var(--text-2); }
+.ce-folder .arrow { width: 16px; color: var(--text-4); font-size: 11px; text-align: center; }
+.ce-folder .count { margin-left: auto; font-size: 12px; color: var(--text-5); }
+.ce-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 5px 10px 5px 26px; border: none; border-left: 2px solid transparent; background: transparent; cursor: pointer; text-align: left; font-family: var(--mono); font-size: 14px; color: var(--text-2); transition: background .1s; }
+.ce-item:hover { background: var(--surface-hover); }
+.ce-item.selected { background: var(--accent-bg); border-left-color: var(--accent); color: var(--accent); font-weight: 550; }
+.ce-item .label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ce-item .label .topic { font-family: var(--sans); font-size: 13px; color: var(--text-4); margin-left: 6px; }
+.ce-item .right { font-size: 12px; color: var(--text-4); white-space: nowrap; }
+.ce-item.selected .right { color: var(--accent); }
+.ce-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.ce-dot.pending { background: transparent; border: 1.5px dashed var(--text-5); }
+.ce-dot.pending.active { border: 1.5px solid var(--accent); animation: pulse 1.4s ease-in-out infinite; }
+.ce-main { flex: 1; min-width: 0; padding: 24px 32px 32px; overflow-y: auto; }
+.ce-crumb { font-family: var(--mono); font-size: 12px; color: var(--text-4); margin-bottom: 10px; }
+.ce-crumb .cur { color: var(--accent); }
+.ce-crumb .sep { color: var(--sep); margin: 0 4px; }
+.ce-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.ce-title { font-size: 28px; font-weight: 600; letter-spacing: -.3px; line-height: 1.2; }
+.ce-title .id { font-family: var(--mono); color: var(--accent); margin-right: 10px; }
+.ce-oneliner { font-size: 17px; color: var(--text-3); margin-top: 4px; }
+.ce-badges { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; max-width: 45%; }
+.ce-sec-label { font-size: 12px; font-weight: 700; color: var(--text-4); text-transform: uppercase; letter-spacing: .4px; margin: 18px 0 8px; }
+.ce-when { padding: 8px 12px; border-radius: 6px; background: rgba(106, 155, 204, .07); border: .5px solid rgba(106, 155, 204, .2); color: var(--info); font-size: 15px; margin-bottom: 14px; }
+.ce-when .ce-sec-label { font-size: 11px; margin: 0 0 2px; color: inherit; opacity: .75; }
+.ce-note { padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-left: 3px solid var(--accent); font-size: 15px; color: var(--text-2); }
+.ce-tips { padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; background: var(--surface); border: 1px solid var(--border-subtle); font-size: 15px; color: var(--text-2); }
+.ce-tips > .ce-sec-label, .ce-note > .ce-sec-label { margin: 0 0 4px; font-size: 11px; }
+.ce-tips > .ce-sec-label { color: var(--accent); }
+.ce-note > .ce-sec-label { color: var(--accent); }
+.ce-list { list-style: none; margin: 0; padding: 0; font-size: 15px; color: var(--text-2); }
+.ce-list li { position: relative; padding-left: 14px; margin-bottom: 4px; }
+.ce-list li::before { content: "●"; position: absolute; left: 0; top: 8px; font-size: 7px; line-height: 1; color: var(--text-4); }
+.score { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 4px 0 6px; }
+.score .big { font-size: 34px; font-weight: 650; letter-spacing: -.6px; }
+.score .of { color: var(--text-3); font-size: 16px; }
+.kv { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 6px 16px; font-size: 15px; }
+.kv .k { color: var(--text-4); }
+.kv .v { color: var(--text-2); }
+.metric { display: grid; grid-template-columns: 150px minmax(0, 1fr) 110px; align-items: center; gap: 14px; font-size: 15px; margin: 6px 0; }
+.metric .k { color: var(--text-4); }
+.metric .v { text-align: right; font-family: var(--mono); font-size: 13px; color: var(--text-2); }
+.metric .bar { height: 6px; border-radius: 3px; }
+.ce-children { display: flex; flex-direction: column; gap: 4px; }
+.ce-child { display: flex; align-items: center; gap: 10px; padding: 7px 10px; width: 100%; background: var(--surface); border: none; border-radius: 6px; cursor: pointer; text-align: left; transition: background .1s; }
+.ce-child:hover { background: var(--surface-hover); }
+.ce-child.open { background: var(--surface-hover); border-radius: 6px 6px 0 0; }
+.ce-child .name { font-family: var(--mono); font-size: 14px; color: var(--text); min-width: 54px; }
+.ce-child .one { flex: 1; min-width: 0; font-size: 14px; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ce-child .pts { font-family: var(--mono); font-size: 13px; color: var(--text-2); white-space: nowrap; }
+.ce-child .sw { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.ce-child .flag { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.ans { border: 1px solid var(--surface-hover); border-top: none; border-radius: 0 0 8px 8px; padding: 12px 14px 4px; margin: -4px 0 4px; }
+.ans .meta { margin-bottom: 8px; }
+.answer { white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: var(--text); margin: 0 0 12px; overflow-x: auto; }
+
+/* Heatmap */
+.heat-wrap { overflow-x: auto; padding: 10px 12px; }
+table.heat { border-collapse: separate; border-spacing: 3px; font-size: 13px; }
+.heat th { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text-3); padding: 2px 4px; text-align: center; white-space: nowrap; }
+.heat th small { display: block; font-weight: 400; color: var(--text-5); }
+.heat .who { position: sticky; left: 0; z-index: 1; background: var(--bg); box-shadow: -16px 0 0 var(--bg), 3px 0 0 var(--bg); text-align: left; padding-right: 12px; white-space: nowrap; font-size: 14px; }
+.heat .who .sid { font-family: var(--mono); font-size: 12px; color: var(--text-4); margin-left: 6px; }
+.heat td { height: 30px; min-width: 40px; text-align: center; border-radius: 5px; }
+.heat td.cell { cursor: pointer; font-family: var(--mono); font-weight: 600; position: relative; }
+.heat td.cell:hover { outline: 2px solid var(--accent); outline-offset: -1px; }
+.heat td.blank { background: repeating-linear-gradient(135deg, var(--border-subtle) 0 5px, transparent 5px 10px); color: var(--text-4); box-shadow: inset 0 0 0 1px var(--border); }
+.heat td.flag::after { content: ""; position: absolute; top: 3px; right: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 1.5px var(--bg); }
+.heat td.pending { text-align: left; padding: 0 12px; font-size: 13px; color: var(--text-4); box-shadow: inset 0 0 0 1px var(--border); border-radius: 5px; }
+.heat td.pending.active { color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent-border); background: var(--accent-bg); }
+.heat td.tot, .heat td.time { font-family: var(--mono); color: var(--text-3); padding: 0 6px; }
+.heat td.hot { color: var(--bad); font-weight: 600; }
+.heat tfoot td { font-family: var(--mono); font-size: 12px; color: var(--text-4); height: 24px; }
+.heat tfoot tr:first-child td { border-top: 1px solid var(--border-subtle); border-radius: 0; }
+.legend { display: flex; align-items: center; gap: 8px; padding: 0 16px 12px; font-size: 12.5px; color: var(--text-4); font-family: var(--mono); }
+.legend .grad { width: 140px; height: 8px; border-radius: 4px; }
+
+/* Recommendations and voices */
+.verdict { padding: 14px 18px; border-bottom: 1px solid var(--border-subtle); }
+.verdict p { margin: 0; font-size: 17px; color: var(--text); }
+.rec { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--border-subtle); }
+.rec:last-child { border-bottom: none; }
+.rec .side { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+.rec .change { font-weight: 600; font-size: 16px; }
+.rec .why { color: var(--text-2); font-size: 15px; margin-top: 3px; }
+.rec .ev { color: var(--text-4); font-size: 13px; margin-top: 5px; font-family: var(--mono); }
+.voices { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.voice { background: var(--surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--sep); border-radius: 8px; padding: 12px 14px; }
+.voice p { margin: 0 0 8px; font-size: 15px; color: var(--text); }
+.voice .by { font-family: var(--mono); font-size: 12px; color: var(--text-4); }
+footer { margin-top: 36px; font-size: 13px; color: var(--text-4); }
+
+@media (max-width: 800px) {
+  .metric { grid-template-columns: 120px minmax(0, 1fr) 96px; }
+  .kv { grid-template-columns: 130px minmax(0, 1fr); }
+  .ce-main { padding: 20px 22px 28px; }
+}
+@media (max-width: 640px) {
+  .ce-root { flex-direction: column; height: auto; }
+  .ce-side { width: auto; min-width: 0; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+  .ce-tree { max-height: 40vh; }
+  .rec { grid-template-columns: 1fr; }
+  .ce-head { flex-direction: column; }
+  .ce-badges { justify-content: flex-start; max-width: none; }
+}
+@media (max-width: 560px) {
+  .stepper { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 14px; }
+  .step:nth-child(3)::after { display: none; }
+  .agent { grid-template-columns: 34px minmax(0, 1fr) 70px; }
+  .agent .stg, .agent .act { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="page-head">
+    <div>
+      <h1 id="title"></h1>
+      <p class="intro" id="intro"></p>
+      <div class="meta" id="meta"></div>
+    </div>
+    <button id="theme-toggle">Theme</button>
+  </header>
+  <div class="cards" id="cards"></div>
+
+  <section>
+    <div class="section-head"><h2>Progress</h2><span id="status"></span></div>
+    <div class="frame">
+      <div class="stepper" id="stepper"></div>
+      <div class="elapsed" id="elapsed"></div>
+      <div class="elapsed" style="margin-top:-8px">Each student prepares, then sits the exam on their own simulated clock, so they need not start at the same moment.</div>
+      <div class="agents" id="agents"></div>
+      <div class="analysts" id="analysts"></div>
+    </div>
+  </section>
+
+  <section id="explorer-section">
+    <div class="section-head"><h2>Explore the results</h2><p class="hint">Pick a student or a question. Click an answer to expand it.</p></div>
+    <div class="ce-root" id="explorer">
+      <nav class="ce-side">
+        <div class="ce-tabs" id="tabs"></div>
+        <div class="ce-tree" id="tree"></div>
+      </nav>
+      <div class="ce-main" id="panel"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Student × question</h2><p class="hint">Orange: few points, green: full points. A dot marks a grader-flagged ambiguity. Click a cell to open the answer.</p></div>
+    <div class="frame">
+      <div class="heat-wrap"><table class="heat" id="heat"></table></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>What to change</h2></div>
+    <div class="frame" id="recs"></div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>In their words</h2></div>
+    <div class="voices" id="voices"></div>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<script>window.MOCK_EXAM_LIVE = __LIVE__;</script>
+<script id="data" type="application/json">__DASHBOARD_DATA__</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const LIVE = window.MOCK_EXAM_LIVE;
+  let D = JSON.parse(document.getElementById("data").textContent);
+  const ui = { tab: "students", sel: null, open: new Set(), collapsed: new Set(), lastFetch: Date.now() / 1000, offline: false, fingerprint: "" };
+
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const pct = (x) => (x == null ? "–" : Math.round(100 * x) + "%");
+  const num = (x, d = 1) => (x == null || isNaN(x) ? "–" : String(+(+x).toFixed(d)));
+  const byQ = (list) => Object.fromEntries((list || []).map((e) => [e.qid, e]));
+  const nowS = () => Date.now() / 1000;
+  const dur = (a, b) => { const s = Math.max(0, b - a); return s < 60 ? `${Math.round(s)} s` : s < 3600 ? `${Math.round(s / 60)} min` : `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min`; };
+  const ago = (t) => dur(t, nowS()) + " ago";
+  const clock = (t) => new Date(t * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const exerciseOf = (qid) => (String(qid).match(/\d+/) || ["other"])[0];
+
+  // Theme: follow the system unless toggled.
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("mock-exam-theme"); if (t) root.dataset.theme = t; } catch (e) {}
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : media.matches);
+
+  // Score colors: Claude orange (no points) through a neutral midpoint to green (full points).
+  // The midpoint is lighter than both ends, and cells also show the number, so the
+  // scale still reads without telling orange from green.
+  function rampRGB(t) {
+    t = Math.max(0, Math.min(1, t));
+    const stops = isDark() ? [[217, 119, 87], [58, 56, 52], [111, 168, 92]] : [[217, 119, 87], [239, 233, 218], [111, 158, 90]];
+    const [a, b, f] = t < 0.5 ? [stops[0], stops[1], t * 2] : [stops[1], stops[2], (t - 0.5) * 2];
+    return a.map((v, k) => Math.round(v + (b[k] - v) * f));
+  }
+  const ramp = (t) => (t == null || isNaN(t) ? null : "rgb(" + rampRGB(t).join(",") + ")");
+  const ink = (t) => {
+    if (t == null || isNaN(t)) return "var(--text)";
+    const [r, g, b] = rampRGB(t);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 110 ? "#141413" : "#e8e6dc";
+  };
+
+  const STAGE = { waiting: "waiting to start", studying: "preparing (before the exam)", sitting: "in the exam", feedback: "writing feedback",
+                  "handed in": "waiting for a grader", grading: "being graded", graded: "graded", "no result": "no result" };
+  const ACTIVE = new Set(["studying", "sitting", "feedback", "grading"]);
+  const SEGS = {
+    waiting: ["", "", "", ""], studying: ["active", "", "", ""], sitting: ["done", "active", "", ""], feedback: ["done", "done", "active", ""],
+    "handed in": ["done", "done", "done", ""], grading: ["done", "done", "done", "active"], graded: ["done", "done", "done", "done"],
+    "no result": ["fail", "fail", "fail", "fail"],
+  };
+  const PRIORITY = { high: 0, medium: 1, low: 2 };
+  const SEVERITY = { high: "bad", medium: "warn", low: "muted" };
+
+  let exam, ST, O, P, S, X, Q, PS, issues, recs;
+  function derive() {
+    exam = D.exam; ST = D.stats; O = ST.overall; P = D.progress;
+    S = Object.fromEntries(D.students.map((s) => [s.sid, s]));
+    X = Object.fromEntries(ST.students.map((x) => [x.sid, x]));
+    Q = Object.fromEntries(ST.questions.map((q) => [q.qid, q]));
+    PS = Object.fromEntries(P.students.map((p) => [p.sid, p]));
+    issues = (D.issues && D.issues.issues) || [];
+    recs = (D.recommendations && D.recommendations.recommendations) || [];
+    if (!ui.sel) ui.sel = { kind: "student", id: D.students[0].sid };
+  }
+  const stageOf = (sid) => (PS[sid] ? PS[sid].stage : "waiting");
+  const nameOf = (sid) => (S[sid] ? S[sid].persona.name || S[sid].persona_id : sid);
+  const nowLine = (sid) => { const p = PS[sid]; return p && p.last && !P.complete ? `${p.last.who === "grader" ? "grader: " : ""}${esc(p.last.action)} · <span data-ago="${p.last.t}"></span>` : ""; };
+  const dot = (sid) => {
+    const x = X[sid], st = stageOf(sid);
+    return x ? `<span class="ce-dot" style="background:${ramp(x.pct)}"></span>` : `<span class="ce-dot pending ${ACTIVE.has(st) ? "active" : ""}"></span>`;
+  };
+
+  // Header and summary cards
+  function renderHeader() {
+    const n = D.students.length;
+    $("#title").textContent = exam.title;
+    $("#intro").textContent = [exam.course, `${exam.duration_min} minutes`, `${exam.total_points} points`, exam.aids].filter(Boolean).join(" · ");
+    $("#meta").innerHTML = `<span>${esc(D.run.id)}</span><span>·</span><span>${n} simulated students</span>`;
+    const partial = O.n_graded < n && !P.complete ? ` · ${O.n_graded} of ${n} graded` : "";
+    const high = issues.filter((i) => i.severity === "high").length;
+    const card = (v, l, c) => `<div class="card" style="--c:${c}"><div class="n">${v}</div><div class="l">${l}</div></div>`;
+    $("#cards").innerHTML = [
+      card(pct(O.mean_pct), "mean score" + partial, "var(--accent)"),
+      card(pct(O.pass_rate), `pass rate (≥ ${pct(exam.pass_fraction ?? 0.5)})`, "var(--good)"),
+      card(pct(O.share_ran_out), "ran out of time", "var(--warn)"),
+      card(O.median_minutes == null ? "–" : num(O.median_minutes, 1) + "′", `median time of ${exam.duration_min}′`, "var(--info)"),
+      card(D.issues ? high : "–", "high-severity issues", "var(--bad)"),
+    ].join("") + (P.complete && O.missing.length ? card(O.missing.length, "students without a result", "var(--bad)") : "");
+  }
+
+  // Progress
+  function statusBadge() {
+    if (P.complete) return `<span class="badge good">finished · ${dur(P.started, P.finished)}</span>`;
+    if (!LIVE) return `<span class="badge muted">snapshot</span>`;
+    if (ui.offline) return `<span class="badge warn">server unreachable</span>`;
+    return `<span class="badge accent"><span class="p"></span>live · <span data-ago="${ui.lastFetch}"></span></span>`;
+  }
+  function renderStatus() {
+    $("#status").innerHTML = statusBadge();
+    tick();
+  }
+  function renderProgress() {
+    renderStatus();
+    const unit = { sit: "handed in", grade: "graded", analyze: "steps" };
+    $("#stepper").innerHTML = P.phases.map((p, i) => `<div class="step ${p.state}"><div class="ic">${p.state === "done" ? "✓" : i + 1}</div>
+      <div class="lbl">${p.label.toLowerCase()}</div>
+      <div class="det">${p.total != null ? `${p.done} / ${p.total} ${unit[p.key]}` : esc(p.detail || (p.state === "done" ? "done" : "waiting"))}</div>
+      ${p.total != null ? `<div class="bar"><i style="width:${Math.round((100 * p.done) / Math.max(1, p.total))}%;background:${p.state === "done" ? "var(--good)" : "var(--accent)"}"></i></div>` : ""}</div>`).join("");
+    $("#elapsed").innerHTML = `started ${clock(P.started)} · ` + (P.complete ? `took ${dur(P.started, P.finished)}` : `<span data-elapsed="${P.started}"></span> elapsed`);
+    $("#agents").innerHTML = P.students.map((ps) => {
+      const x = ps.stage === "graded" ? X[ps.sid] : null;
+      const right = nowLine(ps.sid) || [ps.handed_in ? `handed in ${clock(ps.handed_in)}${ps.started ? ` after ${dur(ps.started, ps.handed_in)}` : ""}` : "",
+                                        x ? `${num(x.total)} / ${exam.total_points}` : ""].filter(Boolean).join(" · ");
+      return `<div class="agent ${ACTIVE.has(ps.stage) ? "active" : ""}" data-student="${ps.sid}">
+        <span class="sid">${ps.sid}</span><span class="nm">${esc(nameOf(ps.sid))}</span>
+        <span class="segs">${(SEGS[ps.stage] || SEGS.waiting).map((c) => `<i class="${c}"></i>`).join("")}</span>
+        <span class="stg">${STAGE[ps.stage] || esc(ps.stage)}</span><span class="act">${right || "&nbsp;"}</span></div>`;
+    }).join("");
+    $("#analysts").innerHTML = P.analysts.map((a) => `<span class="a"><span class="sdot ${a.state}"></span><b>${a.label}</b> ${
+      a.state === "done" ? (a.finished ? "done " + clock(a.finished) : "done")
+      : a.state === "active" ? (a.last ? `${esc(a.last.action)} · <span data-ago="${a.last.t}"></span>` : "working") : "waiting"}</span>`).join("");
+  }
+
+  // Explorer
+  function renderTabs() {
+    const t = (key, label, n) => `<button class="ce-tab ${ui.tab === key ? "active" : ""}" data-tab="${key}">${label} <span style="opacity:.6">${n}</span></button>`;
+    $("#tabs").innerHTML = t("students", "students", D.students.length) + t("questions", "questions", exam.questions.length);
+  }
+  function folder(key, label, count) {
+    const closed = ui.collapsed.has(key);
+    return `<button class="ce-folder" data-folder="${esc(key)}"><span class="arrow">${closed ? "▸" : "▾"}</span>${esc(label)}<span class="count">${count}</span></button>`;
+  }
+  function renderTree() {
+    let html = "";
+    if (ui.tab === "students") {
+      const order = ["bachelor", "master", "phd"];
+      const groups = {};
+      D.students.forEach((s) => (groups[s.persona.level || "other"] ||= []).push(s));
+      for (const lv of [...order.filter((l) => groups[l]), ...Object.keys(groups).filter((l) => !order.includes(l))]) {
+        const key = "level:" + lv;
+        html += folder(key, lv + "/", groups[lv].length);
+        if (ui.collapsed.has(key)) continue;
+        html += groups[lv].map((s) => {
+          const x = X[s.sid], st = stageOf(s.sid);
+          const sel = ui.sel.kind === "student" && ui.sel.id === s.sid;
+          const right = x ? `${num(x.total)}/${exam.total_points}` : esc(st === "waiting" ? "" : st);
+          return `<button class="ce-item ${sel ? "selected" : ""}" data-student="${s.sid}">${dot(s.sid)}<span class="label">${esc(s.persona_id)}</span><span class="right">${right}</span></button>`;
+        }).join("");
+      }
+    } else {
+      const groups = {};
+      exam.questions.forEach((q) => (groups[exerciseOf(q.id)] ||= []).push(q));
+      for (const [ex, qs] of Object.entries(groups)) {
+        const key = "ex:" + ex;
+        html += folder(key, `exercise ${ex}/`, qs.length);
+        if (ui.collapsed.has(key)) continue;
+        html += qs.map((q) => {
+          const st = Q[q.id] || {}, sel = ui.sel.kind === "question" && ui.sel.id === q.id;
+          const hasIssue = issues.some((i) => i.qid === q.id && i.severity === "high");
+          const sw = st.mean_pct == null ? `<span class="ce-dot pending"></span>` : `<span class="ce-dot" style="background:${ramp(st.mean_pct)}"></span>`;
+          return `<button class="ce-item ${sel ? "selected" : ""}" data-question="${esc(q.id)}">${sw}<span class="label">${esc(q.id)}<span class="topic">${esc(q.topic || "")}</span></span><span class="right">${hasIssue ? '<span style="color:var(--accent)">●</span> ' : ""}${pct(st.mean_pct)}</span></button>`;
+        }).join("");
+      }
+    }
+    $("#tree").innerHTML = html;
+  }
+  const plist = (items) => (items && items.length ? `<ul class="ce-list">${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>` : `<span style="color:var(--text-4)">none</span>`);
+  function statusBadgeFor(st) {
+    return `<span class="badge ${st === "answered" ? "good" : st === "partial" ? "warn" : "bad"}">${esc(st || "blank")}</span>`;
+  }
+  function answerBody(sid, qid) {
+    const s = S[sid], a = byQ(s.answers && s.answers.answers)[qid] || {}, g = byQ(s.grades && s.grades.questions)[qid] || {}, f = byQ(s.feedback && s.feedback.questions)[qid];
+    return `<div class="ans">
+      <div class="meta"><span>${a.minutes == null ? "–" : num(a.minutes, 0)} min</span><span>·</span><span>confidence ${pct(a.confidence)}</span></div>
+      <div class="answer">${esc(a.answer || "(no answer)")}</div>
+      ${g.justification ? `<div class="ce-tips"><div class="ce-sec-label">Grader</div>${esc(g.justification)}</div>` : ""}
+      ${g.ambiguity ? `<div class="ce-note"><div class="ce-sec-label">Ambiguity</div>${esc(g.ambiguity)}</div>` : ""}
+      ${f ? `<div class="ce-when"><div class="ce-sec-label">Student feedback</div>clarity ${num(f.clarity)}/5 · difficulty ${num(f.difficulty)}/5${f.comment ? " · “" + esc(f.comment) + "”" : ""}</div>` : ""}
+    </div>`;
+  }
+  function answerRow(sid, qid, label, sub) {
+    const s = S[sid], x = X[sid], key = `${sid}:${qid}`, open = ui.open.has(key);
+    const a = byQ(s.answers && s.answers.answers)[qid], g = byQ(s.grades && s.grades.questions)[qid] || {};
+    const q = exam.questions.find((e) => e.id === qid);
+    const t = x ? x.q_pct[qid] : null;
+    return `<button class="ce-child ${open ? "open" : ""}" data-open="${esc(key)}">
+        <span class="sw" style="background:${t == null ? "var(--border)" : ramp(t)}"></span><span class="name">${esc(label)}</span><span class="one">${esc(sub)}</span>
+        ${g.ambiguity ? '<span class="flag" title="grader-flagged ambiguity"></span>' : ""}
+        ${a ? statusBadgeFor(a.status) : ""}<span class="pts">${g.points == null ? "–" : num(g.points)} / ${q.points}</span></button>${open ? answerBody(sid, qid) : ""}`;
+  }
+  function studentPanel(sid) {
+    const s = S[sid], p = s.persona, x = X[sid], st = stageOf(sid), f = (s.feedback && s.feedback.overall) || {};
+    const prep = p.preparation || {}, prof = p.profile || {};
+    const badges = [p.ability ? `<span class="badge muted">${esc(p.ability)}</span>` : "",
+                    x ? `<span class="badge ${x.passed ? "good" : "bad"}">${x.passed ? "pass" : "fail"}</span>` : `<span class="badge ${ACTIVE.has(st) ? "accent" : "muted"}">${esc(st)}</span>`,
+                    x && x.ran_out_of_time ? `<span class="badge warn">ran out of time</span>` : ""].join("");
+    const now = nowLine(sid);
+    const answers = s.answers
+      ? `<div class="ce-children">${exam.questions.map((q) => answerRow(sid, q.id, q.id, q.topic || "")).join("")}</div>`
+      : `<div class="ce-tips">No answer sheet yet: ${esc(STAGE[st] || st)}.</div>`;
+    return `
+      <div class="ce-crumb">class<span class="sep">/</span>${esc(p.level || "other")}<span class="sep">/</span><span class="cur">${sid} ${esc(s.persona_id)}</span></div>
+      <div class="ce-head"><div><div class="ce-title">${esc(p.name || s.persona_id)}${p.age ? ", " + esc(p.age) : ""}</div><div class="ce-oneliner">${esc(p.program || "")}</div></div>
+        <div class="ce-badges">${badges}</div></div>
+      ${now ? `<div class="ce-when"><div class="ce-sec-label">Now</div>${esc(STAGE[st] || st)} · ${now}</div>` : ""}
+      ${x ? `<div class="score"><span class="big">${num(x.total)}</span><span class="of">/ ${exam.total_points} points · ${pct(x.pct)}</span>
+        <span class="of">· ${x.minutes_used == null ? "–" : num(x.minutes_used, 0)} of ${exam.duration_min} min</span></div>` : ""}
+      ${f.comment ? `<div class="ce-note"><div class="ce-sec-label">After the exam</div>“${esc(f.comment)}”<div style="margin-top:4px;font-size:13px;color:var(--text-4)">difficulty ${num(f.difficulty)}/5 · length: ${esc(f.length || "–")} · fairness ${num(f.fairness)}/5</div></div>` : ""}
+      <div class="ce-sec-label">Answers</div>${answers}
+      <div class="ce-sec-label">Profile</div>
+      <div class="kv">
+        <span class="k">Background · focus</span><span class="v">${esc([p.background, p.focus].filter(Boolean).join(" · ") || "–")}</span>
+        <span class="k">Studied</span><span class="v">${pct(prep.coverage)} of the course · lectures ${pct(prep.lectures_attended)} · exercises ${esc(prep.exercises || "–")}${prep.old_exams ? " · old exams" : ""}</span>
+        <span class="k">Languages</span><span class="v">${esc(p.languages || "–")}</span>
+        <span class="k">Speed · strategy</span><span class="v">${esc([(p.exam_behavior || {}).speed, (p.exam_behavior || {}).strategy].filter(Boolean).join(" · ") || "–")}</span>
+        <span class="k">Strengths</span><span class="v">${plist(prof.strengths)}</span>
+        <span class="k">Weaknesses</span><span class="v">${plist(prof.weaknesses)}</span>
+        <span class="k">Misconceptions</span><span class="v">${plist(prof.misconceptions)}</span>
+      </div>`;
+  }
+  function metric(k, v, frac, color, budget) {
+    return `<div class="metric"><span class="k">${k}</span><span class="bar"><i style="width:${Math.round(100 * Math.max(0, Math.min(1, frac || 0)))}%;background:${color}"></i>${budget ? '<span class="budget"></span>' : ""}</span><span class="v">${v}</span></div>`;
+  }
+  function questionPanel(qid) {
+    const q = exam.questions.find((e) => e.id === qid), st = Q[qid] || {};
+    const qi = issues.filter((i) => i.qid === qid), qr = recs.filter((r) => r.qid === qid).sort((a, b) => (PRIORITY[a.priority] ?? 9) - (PRIORITY[b.priority] ?? 9));
+    const tr = st.time_ratio;
+    const tColor = tr == null ? "var(--text-5)" : tr > 1.2 ? "var(--bad)" : tr > 1 ? "var(--warn)" : "var(--good)";
+    const cColor = st.clarity_mean == null ? "var(--text-5)" : st.clarity_mean < 3 ? "var(--bad)" : st.clarity_mean < 4 ? "var(--warn)" : "var(--good)";
+    const badges = [...new Set(qi.map((i) => i.severity))].sort((a, b) => PRIORITY[a] - PRIORITY[b]).map((sv) => `<span class="badge ${SEVERITY[sv] || "muted"}">${esc(sv)} issue</span>`).join("")
+      + ((st.ambiguity_flags || []).length ? `<span class="badge accent">${st.ambiguity_flags.length} grader flag${st.ambiguity_flags.length > 1 ? "s" : ""}</span>` : "");
+    const rows = [...D.students].sort((a, b) => (X[b.sid] ? X[b.sid].q_pct[qid] : -1) - (X[a.sid] ? X[a.sid].q_pct[qid] : -1))
+      .filter((s) => s.answers).map((s) => answerRow(s.sid, qid, s.sid, nameOf(s.sid))).join("");
+    return `
+      <div class="ce-crumb">exam<span class="sep">/</span>exercise ${esc(exerciseOf(qid))}<span class="sep">/</span><span class="cur">${esc(qid)}</span></div>
+      <div class="ce-head"><div><div class="ce-title"><span class="id">${esc(qid)}</span></div><div class="ce-oneliner">${esc(q.topic || "")} · ${q.points} points</div></div>
+        <div class="ce-badges">${badges}</div></div>
+      ${metric("Mean score", pct(st.mean_pct), st.mean_pct, ramp(st.mean_pct) || "var(--text-5)")}
+      ${metric("Time vs budget", tr == null ? "–" : `${num(st.mean_minutes, 0)} / ${num(st.budget_minutes, 0)} min`, tr == null ? 0 : tr / 2, tColor, true)}
+      ${metric("Clarity", st.clarity_mean == null ? "–" : num(st.clarity_mean) + " / 5", st.clarity_mean == null ? 0 : (st.clarity_mean - 1) / 4, cColor)}
+      ${metric("Felt difficulty", st.difficulty_mean == null ? "–" : num(st.difficulty_mean) + " / 5", st.difficulty_mean == null ? 0 : (st.difficulty_mean - 1) / 4, "var(--text-4)")}
+      <div class="kv" style="margin-top:8px"><span class="k">Discrimination</span><span class="v mono">${num(st.discrimination, 2)}</span>
+        <span class="k">Blank</span><span class="v mono">${(st.status_counts || {}).blank || 0} of ${ST.students.length}</span></div>
+      ${qi.length ? `<div class="ce-sec-label">Issues</div>` + qi.map((i) => `<div class="ce-note"><div class="ce-sec-label">${esc(i.severity)} · ${esc(i.kind)} · ${(i.students || []).length} student(s)</div>${esc(i.summary)}
+        ${(i.quotes || []).map((qq) => `<div style="margin-top:6px;font-size:14px;color:var(--text-3)">“${esc(qq.text)}” · ${esc(nameOf(qq.sid))}</div>`).join("")}</div>`).join("") : ""}
+      ${qr.length ? `<div class="ce-sec-label">Suggested change</div>` + qr.map((r) => `<div class="ce-tips"><div class="ce-sec-label">${esc(r.priority)} priority</div><div style="color:var(--text);font-weight:600">${esc(r.change)}</div>
+        <div style="margin-top:4px">${esc(r.rationale)}</div></div>`).join("") : ""}
+      <div class="ce-sec-label">Answers</div>${rows ? `<div class="ce-children">${rows}</div>` : `<div class="ce-tips">No answer sheets yet.</div>`}`;
+  }
+  function renderPanel() {
+    $("#panel").innerHTML = ui.sel.kind === "student" ? studentPanel(ui.sel.id) : questionPanel(ui.sel.id);
+    renderMath($("#panel"));
+    tick();
+  }
+  function renderExplorer() {
+    const tree = $("#tree"), panel = $("#panel"), keep = [tree.scrollTop, panel.scrollTop];
+    renderTabs(); renderTree(); renderPanel();
+    [tree.scrollTop, panel.scrollTop] = keep;
+  }
+  function select(kind, id, openKey) {
+    ui.sel = { kind, id };
+    ui.tab = kind === "student" ? "students" : "questions";
+    if (openKey) ui.open.add(openKey);
+    renderExplorer();
+    $("#panel").scrollTop = 0;
+    if (openKey) {
+      const el = document.querySelector(`[data-open="${CSS.escape(openKey)}"]`);
+      if (el) el.scrollIntoView({ block: "center" });
+    }
+  }
+  $("#explorer").addEventListener("click", (e) => {
+    const t = e.target.closest("[data-tab],[data-folder],[data-student],[data-question],[data-open]");
+    if (!t) return;
+    if (t.dataset.tab) { ui.tab = t.dataset.tab; renderTabs(); renderTree(); }
+    else if (t.dataset.folder) { const k = t.dataset.folder; ui.collapsed.has(k) ? ui.collapsed.delete(k) : ui.collapsed.add(k); renderTree(); }
+    else if (t.dataset.student) select("student", t.dataset.student);
+    else if (t.dataset.question) select("question", t.dataset.question);
+    else if (t.dataset.open) {
+      const k = t.dataset.open, panel = $("#panel"), top = panel.scrollTop;
+      ui.open.has(k) ? ui.open.delete(k) : ui.open.add(k);
+      renderPanel();
+      panel.scrollTop = top;
+    }
+  });
+  $("#agents").addEventListener("click", (e) => {
+    const row = e.target.closest("[data-student]");
+    if (!row) return;
+    select("student", row.dataset.student);
+    $("#explorer-section").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // Heatmap
+  function renderHeat() {
+    const qs = exam.questions;
+    const rows = [...D.students].sort((a, b) => (X[b.sid] ? X[b.sid].total : -1) - (X[a.sid] ? X[a.sid].total : -1));
+    const head = `<thead><tr><th></th>${qs.map((q) => `<th>${esc(q.id)}<small>${q.points}</small></th>`).join("")}<th>total</th><th>time</th></tr></thead>`;
+    const body = rows.map((s) => {
+      const x = X[s.sid], g = byQ(s.grades && s.grades.questions), st = stageOf(s.sid);
+      const who = `<td class="who">${esc(nameOf(s.sid))}<span class="sid">${s.sid}</span></td>`;
+      if (!x) return `<tr>${who}<td class="pending ${ACTIVE.has(st) ? "active" : ""}" colspan="${qs.length}">${esc(STAGE[st] || st)}</td><td class="tot">–</td><td class="time">–</td></tr>`;
+      const cells = qs.map((q) => {
+        const t = x.q_pct[q.id], p = x.q_pts[q.id], blank = x.q_status[q.id] === "blank" && !p, flag = g[q.id] && g[q.id].ambiguity;
+        return blank
+          ? `<td class="cell blank ${flag ? "flag" : ""}" data-cell="${s.sid}:${esc(q.id)}" title="blank">–</td>`
+          : `<td class="cell ${flag ? "flag" : ""}" data-cell="${s.sid}:${esc(q.id)}" style="background:${ramp(t)};color:${ink(t)}" title="${num(p)} / ${q.points}">${num(p)}</td>`;
+      }).join("");
+      return `<tr>${who}${cells}<td class="tot">${pct(x.pct)}</td><td class="time ${x.ran_out_of_time ? "hot" : ""}">${x.minutes_used == null ? "–" : num(x.minutes_used, 0) + "′"}</td></tr>`;
+    }).join("");
+    const foot = (label, fn) => `<tr><td class="who" style="font-family:var(--mono);font-size:12px;color:var(--text-4)">${label}</td>${qs.map((q) => fn(Q[q.id])).join("")}<td></td><td></td></tr>`;
+    const tfoot = ST.students.length ? `<tfoot>
+      ${foot("mean", (q) => `<td>${pct(q.mean_pct)}</td>`)}
+      ${foot("time/budget", (q) => `<td class="${q.time_ratio > 1.2 ? "hot" : ""}">${q.time_ratio == null ? "–" : num(q.time_ratio) + "×"}</td>`)}
+      ${foot("clarity", (q) => `<td class="${q.clarity_mean != null && q.clarity_mean < 3 ? "hot" : ""}">${q.clarity_mean == null ? "–" : num(q.clarity_mean)}</td>`)}
+    </tfoot>` : "";
+    $("#heat").innerHTML = head + `<tbody>${body}</tbody>` + tfoot;
+    $("#legend").innerHTML = `<span>0</span><span class="grad" style="background:linear-gradient(90deg,${ramp(0)},${ramp(0.5)},${ramp(1)})"></span><span>full points</span>`;
+  }
+  $("#heat").addEventListener("click", (e) => {
+    const td = e.target.closest("[data-cell]");
+    if (!td) return;
+    const [sid, qid] = td.dataset.cell.split(":");
+    select("student", sid, `${sid}:${qid}`);
+    $("#explorer-section").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // Recommendations
+  function renderRecs() {
+    if (!D.recommendations && !D.issues) {
+      $("#recs").innerHTML = `<div class="empty">${P.complete
+        ? "No analysis files. The feedback analyst and exam reviewer write analysis/feedback.json and analysis/recommendations.json."
+        : "The feedback analyst and the exam reviewer start once every student is graded."}</div>`;
+      return;
+    }
+    const parts = [];
+    if (D.recommendations && D.recommendations.verdict) parts.push(`<div class="verdict"><div class="ce-sec-label" style="margin-top:0;color:var(--accent)">Reviewer's verdict</div><p>${esc(D.recommendations.verdict)}</p></div>`);
+    if (D.issues && D.issues.summary) parts.push(`<div class="verdict"><div class="ce-sec-label" style="margin-top:0">What the students said</div><p>${esc(D.issues.summary)}</p></div>`);
+    [...recs].sort((a, b) => (PRIORITY[a.priority] ?? 9) - (PRIORITY[b.priority] ?? 9)).forEach((r) => parts.push(`
+      <div class="rec"><div class="side"><span class="badge ${SEVERITY[r.priority] || "muted"}">${esc(r.priority)}</span>${Q[r.qid] ? `<button class="badge muted" style="cursor:pointer" data-goto="${esc(r.qid)}">${esc(r.qid)} →</button>` : `<span class="badge muted">${esc(r.qid)}</span>`}</div>
+      <div><div class="change">${esc(r.change)}</div><div class="why">${esc(r.rationale)}</div>${(r.evidence || []).length ? `<div class="ev">${r.evidence.map(esc).join(" · ")}</div>` : ""}</div></div>`));
+    const general = issues.filter((i) => !Q[i.qid]);
+    if (general.length) parts.push(`<div class="verdict"><div class="ce-sec-label" style="margin-top:0">Exam-wide issues</div>${general.map((i) => `<div class="ce-note" style="margin-top:8px"><div class="ce-sec-label">${esc(i.severity)} · ${esc(i.kind)}</div>${esc(i.summary)}</div>`).join("")}</div>`);
+    $("#recs").innerHTML = parts.join("");
+  }
+  $("#recs").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-goto]");
+    if (!b) return;
+    select("question", b.dataset.goto);
+    $("#explorer-section").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // Voices
+  function renderVoices() {
+    const withComment = D.students.filter((s) => s.feedback && s.feedback.overall && s.feedback.overall.comment);
+    $("#voices").innerHTML = withComment.map((s) => {
+      const p = s.persona, x = X[s.sid], f = s.feedback.overall;
+      return `<div class="voice" style="${x ? `border-left-color:${ramp(x.pct)}` : ""}"><p>“${esc(f.comment)}”</p>
+        <div class="by">${esc(p.name || s.persona_id)}, ${esc(p.program || "")}</div>
+        <div class="by">difficulty ${num(f.difficulty)}/5 · ${esc(f.length || "–")} · fairness ${num(f.fairness)}/5${x ? " · scored " + pct(x.pct) : ""}</div></div>`;
+    }).join("") || `<div class="empty">${P.complete ? "No feedback comments." : "Comments appear here as students hand in."}</div>`;
+  }
+
+  function renderMath(el) {
+    if (!window.renderMathInElement) return;
+    renderMathInElement(el, {
+      delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\[", right: "\\]", display: true }, { left: "$", right: "$", display: false }, { left: "\\(", right: "\\)", display: false }],
+      throwOnError: false,
+    });
+  }
+  function tick() {
+    document.querySelectorAll("[data-ago]").forEach((el) => (el.textContent = ago(+el.dataset.ago)));
+    document.querySelectorAll("[data-elapsed]").forEach((el) => (el.textContent = dur(+el.dataset.elapsed, nowS())));
+  }
+  setInterval(tick, 1000);
+
+  function renderAll() {
+    derive();
+    renderHeader();
+    renderProgress();
+    renderExplorer();
+    renderHeat();
+    renderRecs();
+    renderVoices();
+    $("#footer").textContent = `Run ${D.run.dir} · created ${D.run.created} · data from ${D.generated}. Simulated students are not real students: trust the signals about wording, length and errors more than the grade distribution.`;
+    tick();
+  }
+
+  // Theme toggle cycles system → light → dark; colors that live in JS are redrawn.
+  const themeLabel = () => ($("#theme-toggle").textContent = root.dataset.theme ? `Theme: ${root.dataset.theme}` : "Theme: system");
+  $("#theme-toggle").onclick = () => {
+    const next = !root.dataset.theme ? "light" : root.dataset.theme === "light" ? "dark" : null;
+    if (next) root.dataset.theme = next; else delete root.dataset.theme;
+    try { next ? localStorage.setItem("mock-exam-theme", next) : localStorage.removeItem("mock-exam-theme"); } catch (e) {}
+    themeLabel();
+    renderAll();
+  };
+  media.addEventListener("change", () => { if (!root.dataset.theme) renderAll(); });
+  themeLabel();
+
+  // Live mode: poll the server and redraw only when something changed.
+  const fingerprint = (d) => JSON.stringify([d.students, d.issues, d.recommendations, d.progress.phases, d.progress.students, d.progress.analysts, d.progress.complete]);
+  async function poll() {
+    let delay = 3000;
+    try {
+      const r = await fetch(LIVE.api, { cache: "no-store" });
+      if (!r.ok) throw new Error(r.status);
+      const next = await r.json();
+      ui.lastFetch = nowS();
+      ui.offline = false;
+      const fp = fingerprint(next);
+      if (fp !== ui.fingerprint) { D = next; ui.fingerprint = fp; renderAll(); } else renderStatus();
+      if (D.progress.complete) delay = 20000;
+    } catch (e) {
+      ui.offline = true;
+      renderStatus();
+      delay = 5000;
+    }
+    setTimeout(poll, delay);
+  }
+
+  renderAll();
+  if (LIVE) { ui.fingerprint = fingerprint(D); setTimeout(poll, 3000); }
+});
+</script>
+</body>
+</html>

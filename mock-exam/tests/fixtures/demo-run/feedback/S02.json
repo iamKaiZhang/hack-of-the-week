@@ -1,0 +1,41 @@
+{
+  "sid": "S02",
+  "overall": {
+    "difficulty": 4,
+    "length": "about right",
+    "fairness": 3,
+    "comment": "Half of this needs the last weeks, which I had not covered. The first question was okay."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 3,
+      "difficulty": 5,
+      "comment": "Never saw how to compute mixed strategies."
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 4,
+      "comment": ""
+    },
+    {
+      "qid": "Q3",
+      "clarity": 3,
+      "difficulty": 5,
+      "comment": ""
+    }
+  ]
+}

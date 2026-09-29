@@ -1,0 +1,27 @@
+id = "chiara"
+name = "Chiara"
+age = 25
+program = "MSc Mechanical Engineering, 3rd semester (focus: data-driven manufacturing)"
+level = "master"
+background = "mechanical engineering"
+focus = "machine learning"
+ability = "below median"
+languages = "Italian (native), German (B2), English (C1)"
+interests = ["machine learning for predictive maintenance", "Python", "road cycling"]
+motivation = "Interested in learning in games; needs a good grade for a PhD application."
+
+[preparation]
+coverage = 0.7
+lectures_attended = 0.6
+exercises = "some"
+old_exams = false
+
+[profile]
+strengths = ["fast, clean computation", "linear algebra", "gradient-based optimization"]
+weaknesses = ["proofs", "fell behind in the second half of the semester because of her semester project"]
+misconceptions = ["Believes that iterating best responses always converges to a Nash equilibrium."]
+
+[exam_behavior]
+speed = "fast"
+strategy = "Does every computational question first, then comes back to the proofs."
+under_pressure = "Guesses the answer from the pattern of earlier sub-questions."

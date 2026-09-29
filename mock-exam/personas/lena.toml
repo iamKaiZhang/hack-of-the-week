@@ -1,0 +1,28 @@
+id = "lena"
+name = "Lena"
+age = 21
+program = "BSc Mechanical Engineering, 5th semester"
+level = "bachelor"            # bachelor | master | phd (groups students in the dashboard)
+background = "mechanical engineering"   # home discipline: shapes prior knowledge
+focus = "robotics"            # markets | multi-agent control | robotics | machine learning
+ability = "below median"            # top 10% | above median | median | below median | bottom quarter
+languages = "German (native), English (B2)"
+interests = ["robotics", "cycling", "Formula Student"]
+motivation = "Needs this course for her study plan; aims for a solid pass rather than a top grade."
+# model = "haiku"             # optional: overrides the exam's student_model
+
+[preparation]
+coverage = 0.75               # share of the course studied, in lecture order (0 to 1)
+lectures_attended = 0.6       # share of lectures attended
+exercises = "some"            # none | some | all
+old_exams = false             # practiced with old exams
+
+[profile]
+strengths = ["hand computation", "linear algebra", "following a recipe step by step"]
+weaknesses = ["proofs", "abstract definitions", "long word problems"]
+misconceptions = ["Believes every finite game has a pure-strategy Nash equilibrium."]
+
+[exam_behavior]
+speed = "slow"                # slow | average | fast
+strategy = "Works through the questions strictly in order and gets stuck on the first hard one."
+under_pressure = "Rushes the last question and drops justifications."

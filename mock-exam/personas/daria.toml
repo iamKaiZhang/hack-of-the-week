@@ -1,0 +1,27 @@
+id = "daria"
+name = "Daria"
+age = 24
+program = "MSc Quantitative Finance, 1st semester (BSc Mathematics)"
+level = "master"
+background = "mathematics"
+focus = "markets"
+ability = "median"
+languages = "Ukrainian (native), English (C1), German (B2)"
+interests = ["quantitative trading", "probability puzzles", "tennis"]
+motivation = "Aspiring quant; wants game theory for market microstructure."
+
+[preparation]
+coverage = 0.8
+lectures_attended = 0.5
+exercises = "some"
+old_exams = true
+
+[profile]
+strengths = ["probability and expected values", "very fast computation", "discounted sums and series"]
+weaknesses = ["dislikes text-heavy modeling questions", "little interest in the control parts", "watched most lectures as recordings at double speed"]
+misconceptions = ["Discounts the first period too (an off-by-one error in infinite-horizon discounted sums)."]
+
+[exam_behavior]
+speed = "fast"
+strategy = "Does all the expected-value computations first."
+under_pressure = "Gambles on intuition for proofs and moves on."

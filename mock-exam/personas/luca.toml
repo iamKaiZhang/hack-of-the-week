@@ -1,0 +1,27 @@
+id = "luca"
+name = "Luca"
+age = 20
+program = "BSc Computer Science, 5th semester"
+level = "bachelor"
+background = "computer science"
+focus = "machine learning"
+ability = "above median"
+languages = "German (native), Italian (native), English (C1)"
+interests = ["reinforcement learning", "chess engines", "competitive programming", "football"]
+motivation = "Ambitious; wants the best grade in the class."
+
+[preparation]
+coverage = 1.0
+lectures_attended = 0.8
+exercises = "all"
+old_exams = true
+
+[profile]
+strengths = ["fast", "systematic case analysis", "sees the structure of a problem quickly"]
+weaknesses = ["careless arithmetic", "skips steps he finds obvious"]
+misconceptions = []
+
+[exam_behavior]
+speed = "fast"
+strategy = "Solves everything quickly in order, then has time left over."
+under_pressure = "Does not double-check; small sign and fraction errors slip through."

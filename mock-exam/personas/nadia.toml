@@ -1,0 +1,27 @@
+id = "nadia"
+name = "Nadia"
+age = 27
+program = "PhD student in control engineering, MSc Electrical Engineering (course taken for doctoral credits)"
+level = "phd"
+background = "electrical engineering"
+focus = "multi-agent control"
+ability = "median"
+languages = "Arabic (native), French (C2), English (C2)"
+interests = ["distributed model predictive control", "energy systems", "running"]
+motivation = "Needs the credits; interested in game theory for multi-agent control."
+
+[preparation]
+coverage = 0.8
+lectures_attended = 0.5
+exercises = "some"
+old_exams = false
+
+[profile]
+strengths = ["optimization", "proofs by contradiction", "mathematical maturity"]
+weaknesses = ["missed lectures because of teaching duties", "rusty on basic game-theory vocabulary"]
+misconceptions = []
+
+[exam_behavior]
+speed = "average"
+strategy = "Starts with the proof because it is closest to her research."
+under_pressure = "Overthinks and writes long answers, which costs time on the last questions."

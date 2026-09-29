@@ -1,0 +1,43 @@
+{
+  "sid": "S04",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "$R$ dominated by $C$. $D$ dominated by $M$. $L$ dominated by $C$ (2 vs 3 and 2 vs 2). Then for player 1, $M$ is better than $U$ against $C$. Answer: $(M, C)$.",
+      "minutes": 11,
+      "confidence": 0.7
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "$(T, L)$ because both get their highest payoff there.",
+      "minutes": 7,
+      "confidence": 0.5
+    },
+    {
+      "qid": "Q2b",
+      "status": "answered",
+      "answer": "Player 1 plays $T$ with probability $4/(4+0) = 1$?? Then $p = 4/6$.",
+      "minutes": 10,
+      "confidence": 0.2
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "4",
+      "minutes": 2,
+      "confidence": 0.3
+    },
+    {
+      "qid": "Q3",
+      "status": "blank",
+      "answer": "",
+      "minutes": 0,
+      "confidence": 0
+    }
+  ],
+  "minutes_used": 30,
+  "ran_out_of_time": true,
+  "notes": "I panicked at the proof and did not write anything."
+}

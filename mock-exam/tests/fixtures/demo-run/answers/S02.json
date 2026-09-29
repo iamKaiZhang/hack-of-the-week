@@ -1,0 +1,43 @@
+{
+  "sid": "S02",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "$R$ is dominated by $C$, remove it. Then $D$ is dominated. Left with $U, M$ and $L, C$.",
+      "minutes": 9,
+      "confidence": 0.6
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "Nash equilibrium = best total payoff: $(T,L)$ gives 6 and $(B,R)$ gives 6, so both.",
+      "minutes": 6,
+      "confidence": 0.5
+    },
+    {
+      "qid": "Q2b",
+      "status": "blank",
+      "answer": "",
+      "minutes": 0,
+      "confidence": 0
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "4",
+      "minutes": 3,
+      "confidence": 0.3
+    },
+    {
+      "qid": "Q3",
+      "status": "blank",
+      "answer": "",
+      "minutes": 0,
+      "confidence": 0
+    }
+  ],
+  "minutes_used": 18,
+  "ran_out_of_time": false,
+  "notes": "I only knew the first part of the course. Left the rest."
+}

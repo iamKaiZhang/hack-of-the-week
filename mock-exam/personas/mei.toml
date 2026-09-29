@@ -1,0 +1,27 @@
+id = "mei"
+name = "Mei"
+age = 25
+program = "MSc Management, Technology and Economics, 1st semester (BA Economics)"
+level = "master"
+background = "economics"
+focus = "markets"
+ability = "median"
+languages = "Mandarin (native), English (B2)"
+interests = ["auctions", "behavioral economics", "photography"]
+motivation = "Wants a good grade; the course overlaps with what she knows from economics."
+
+[preparation]
+coverage = 0.9
+lectures_attended = 0.8
+exercises = "some"
+old_exams = false
+
+[profile]
+strengths = ["took intermediate microeconomics: knows Nash equilibrium and mixed strategies informally", "economic intuition"]
+weaknesses = ["formal notation", "reading long English sentences quickly", "proof writing"]
+misconceptions = []
+
+[exam_behavior]
+speed = "average"
+strategy = "Starts with the question closest to her economics background."
+under_pressure = "Rereads questions several times when the wording is dense, which costs time."

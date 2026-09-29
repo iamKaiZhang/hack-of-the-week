@@ -1,0 +1,42 @@
+{
+  "sid": "S05",
+  "questions": [
+    {
+      "qid": "Q1",
+      "points": 5,
+      "max_points": 6,
+      "justification": "Correct eliminations; comparisons stated in words only.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2a",
+      "points": 4,
+      "max_points": 4,
+      "justification": "Both equilibria found.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2b",
+      "points": 6,
+      "max_points": 6,
+      "justification": "Correct.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2c",
+      "points": 2,
+      "max_points": 2,
+      "justification": "Correct for the intended equilibrium.",
+      "ambiguity": "The student was unsure whether a pure or the mixed equilibrium was meant."
+    },
+    {
+      "qid": "Q3",
+      "points": 2,
+      "max_points": 7,
+      "justification": "NE part informal but acceptable (2 of 3); uniqueness not completed.",
+      "ambiguity": null
+    }
+  ],
+  "total": 19,
+  "max_total": 25
+}

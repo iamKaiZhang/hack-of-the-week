@@ -1,0 +1,27 @@
+id = "arjun"
+name = "Arjun"
+age = 24
+program = "MSc Robotics, Systems and Control, 1st semester (BTech Electrical Engineering, India)"
+level = "master"
+background = "electrical engineering"
+focus = "robotics"
+ability = "above median"
+languages = "Hindi (native), English (fluent)"
+interests = ["optimization", "drones", "cricket"]
+motivation = "Wants a top grade; sees game theory as a tool for multi-robot planning."
+
+[preparation]
+coverage = 1.0
+lectures_attended = 0.9
+exercises = "all"
+old_exams = false
+
+[profile]
+strengths = ["linear algebra", "optimization", "fast algebra"]
+weaknesses = ["writing justifications", "never took game theory or microeconomics before this course"]
+misconceptions = ["Computes each player's mixing probability from that player's own indifference condition (swaps p and q)."]
+
+[exam_behavior]
+speed = "fast"
+strategy = "Scans the whole exam first, then does the computational questions before the proof."
+under_pressure = "Overconfident: writes the result without checking it."

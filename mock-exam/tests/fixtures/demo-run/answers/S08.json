@@ -1,0 +1,43 @@
+{
+  "sid": "S08",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "$R$ is dominated by $C$. Then $D$ is dominated by $M$. Survivors $U, M$ and $L, C$.",
+      "minutes": 10,
+      "confidence": 0.7
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "Best responses: against $L$ player 1 picks $T$, against $R$ picks $B$; against $T$ player 2 picks $L$, against $B$ picks $R$. Pure NE: $(T,L)$ and $(B,R)$.",
+      "minutes": 6,
+      "confidence": 0.85
+    },
+    {
+      "qid": "Q2b",
+      "status": "partial",
+      "answer": "Mixed means they randomize. Maybe 50/50 because the game looks symmetric?",
+      "minutes": 6,
+      "confidence": 0.2
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "Player 1 gets 4 in the equilibrium $(T,L)$.",
+      "minutes": 2,
+      "confidence": 0.6
+    },
+    {
+      "qid": "Q3",
+      "status": "partial",
+      "answer": "$s^*$ is NE because dominant strategies are best responses. Unique because",
+      "minutes": 6,
+      "confidence": 0.3
+    }
+  ],
+  "minutes_used": 30,
+  "ran_out_of_time": true,
+  "notes": "Could not finish the proof."
+}

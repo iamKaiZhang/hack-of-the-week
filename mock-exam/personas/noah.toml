@@ -1,0 +1,27 @@
+id = "noah"
+name = "Noah"
+age = 23
+program = "MSc Robotics, Systems and Control, 1st semester (BSc Mathematics)"
+level = "master"
+background = "mathematics"
+focus = "robotics"
+ability = "above median"
+languages = "German (native, Swiss), French (B2), English (C1)"
+interests = ["legged robots", "geometric control", "a student robotics team", "climbing"]
+motivation = "Switched from pure math to robotics; wants the theory of interacting agents."
+
+[preparation]
+coverage = 0.95
+lectures_attended = 0.9
+exercises = "all"
+old_exams = false
+
+[profile]
+strengths = ["proofs", "abstraction", "linear algebra"]
+weaknesses = ["little intuition for economic stories", "slow at turning a text into a payoff matrix"]
+misconceptions = ["Uses the textbook meaning of a term (for example, efficient = Pareto efficient) even when the exam defines it differently."]
+
+[exam_behavior]
+speed = "average"
+strategy = "Works in order and writes rigorous answers."
+under_pressure = "Prefers a rigorous partial answer to a complete sloppy one."

@@ -1,0 +1,44 @@
+{
+  "verdict": "Not ready yet. Two wording ambiguities (Q1 and Q2c) change what well-prepared students answer and cost them points under the current rubric. Fix both, and either shorten Q3 or add five minutes: half the class ran out of time with Q3 unfinished.",
+  "recommendations": [
+    {
+      "qid": "Q2c",
+      "priority": "high",
+      "change": "Replace with: '(c) Compute player 1's expected payoff in the mixed-strategy equilibrium from (b).'",
+      "rationale": "Five of eight students hesitated or chose different equilibria; the intended reading is only implicit.",
+      "evidence": [
+        "grader flags on S03, S05, S07, S08",
+        "clarity 3.1/5, lowest on the exam"
+      ]
+    },
+    {
+      "qid": "Q1",
+      "priority": "high",
+      "change": "Replace 'Eliminate dominated strategies iteratively' with 'Apply iterated elimination of strictly dominated strategies (IESDS)'.",
+      "rationale": "Weak dominance is a legitimate reading and gives a different answer, as S04's sheet shows.",
+      "evidence": [
+        "grader flags on S03, S04",
+        "S03 comment"
+      ]
+    },
+    {
+      "qid": "overall",
+      "priority": "medium",
+      "change": "Either extend to 35 minutes or cut Q3 to the uniqueness part (4 points) and state the Nash-equilibrium part as given.",
+      "rationale": "Median time used is 29.5 of 30 minutes and four students ran out, all inside Q3.",
+      "evidence": [
+        "share ran out 50%",
+        "Q3 partial for 3 students"
+      ]
+    },
+    {
+      "qid": "Q3",
+      "priority": "low",
+      "change": "Split the statement into two sentences: the assumption, then '(i) Show s* is a Nash equilibrium. (ii) Show it is the only pure one.'",
+      "rationale": "Easier to parse for non-native readers and makes partial credit visible.",
+      "evidence": [
+        "S05 comment"
+      ]
+    }
+  ]
+}

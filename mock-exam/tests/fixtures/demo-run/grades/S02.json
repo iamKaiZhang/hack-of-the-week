@@ -1,0 +1,42 @@
+{
+  "sid": "S02",
+  "questions": [
+    {
+      "qid": "Q1",
+      "points": 4,
+      "max_points": 6,
+      "justification": "Correct result but no payoff comparisons shown for either step.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2a",
+      "points": 3,
+      "max_points": 4,
+      "justification": "Correct profiles, but justified by total payoff, which is not the definition.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2b",
+      "points": 0,
+      "max_points": 6,
+      "justification": "",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q2c",
+      "points": 0,
+      "max_points": 2,
+      "justification": "Unlabeled value; the rubric requires the equilibrium to be named.",
+      "ambiguity": null
+    },
+    {
+      "qid": "Q3",
+      "points": 0,
+      "max_points": 7,
+      "justification": "",
+      "ambiguity": null
+    }
+  ],
+  "total": 7,
+  "max_total": 25
+}

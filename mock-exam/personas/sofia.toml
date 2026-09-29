@@ -1,0 +1,27 @@
+id = "sofia"
+name = "Sofia"
+age = 23
+program = "MSc Electrical Engineering, 3rd semester, working student (40%)"
+level = "master"
+background = "electrical engineering"
+focus = "markets"
+ability = "bottom quarter"
+languages = "Italian (native), English (C1), German (A2)"
+interests = ["power electronics", "electricity markets", "climbing", "startups"]
+motivation = "Needs the credits; wants to pass with minimal time investment because of her job."
+
+[preparation]
+coverage = 0.6
+lectures_attended = 0.3
+exercises = "none"
+old_exams = false
+
+[profile]
+strengths = ["quick at spotting patterns in tables", "calm under pressure"]
+weaknesses = ["crammed the slides the night before", "has not practiced any exercises", "definitions are fuzzy"]
+misconceptions = ["Thinks a Nash equilibrium is the outcome with the highest total payoff."]
+
+[exam_behavior]
+speed = "average"
+strategy = "Picks the questions that look short and familiar first; skips anything long."
+under_pressure = "Writes down whatever partial idea she has to collect points."

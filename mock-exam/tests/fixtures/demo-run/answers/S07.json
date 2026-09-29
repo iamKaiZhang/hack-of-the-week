@@ -1,0 +1,43 @@
+{
+  "sid": "S07",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "Step 1: $R$ is strictly dominated by $C$ for player 2 ($3>1$, $2>1$, $1>0$), remove $R$.\nStep 2: now $D$ is strictly dominated by $M$ ($2>1$, $2>1$), remove $D$.\nStep 3: no more strictly dominated strategies. Survivors: $\\{U,M\\} \\times \\{L,C\\}$.",
+      "minutes": 7,
+      "confidence": 0.9
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "Best responses: against $L$ player 1 picks $T$, against $R$ picks $B$; against $T$ player 2 picks $L$, against $B$ picks $R$. Pure NE: $(T,L)$ and $(B,R)$.",
+      "minutes": 4,
+      "confidence": 0.95
+    },
+    {
+      "qid": "Q2b",
+      "status": "answered",
+      "answer": "With $p = P(T)$: player 2 is indifferent when $2p = 4(1-p)$, so $p = 2/3$; similarly $q = 1/3$ from player 1's indifference.",
+      "minutes": 7,
+      "confidence": 0.8
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "Assuming the mixed equilibrium of (b): $4q = 4/3$.",
+      "minutes": 2,
+      "confidence": 0.8
+    },
+    {
+      "qid": "Q3",
+      "status": "answered",
+      "answer": "NE: for each $i$, $u_i(s_i^*, s_{-i}) > u_i(s_i, s_{-i})$ for all $s_i \\neq s_i^*$ and all $s_{-i}$, in particular for $s_{-i}^*$, so nobody deviates.\nUniqueness: if $s'$ is a NE with $s'_i \\neq s_i^*$, then $u_i(s_i^*, s'_{-i}) > u_i(s'_i, s'_{-i})$, a profitable deviation. Contradiction.",
+      "minutes": 9,
+      "confidence": 0.95
+    }
+  ],
+  "minutes_used": 29,
+  "ran_out_of_time": false,
+  "notes": "Started with the proof, then the rest."
+}

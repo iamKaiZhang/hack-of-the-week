@@ -1,0 +1,60 @@
+# Exam configuration. Paths are relative to the project root.
+# Copy this folder to exams/<your-exam-id>/ and edit.
+# This example is tracked in git and used by the tests: keep it.
+
+title = "Introduction to Game Theory: Quiz 1"
+course = "Game Theory (example course)"
+duration_min = 30
+language = "English"
+aids = "Closed book. One handwritten A4 sheet (both sides). No calculator."
+open_book = false          # true lets students keep reading their materials during the exam
+pass_fraction = 0.5        # share of total points needed to pass
+# typical_score = 0.55     # optional: median share of points in this course; students calibrate to it
+
+# What students see. Must not contain solutions (compile without the solution toggle).
+student_file = "exams/example/exam.pdf"
+# Graders only. Students are blocked from these paths and from any file named *solution* or *rubric*.
+solution_files = ["exams/example/solution.tex"]
+
+student_model = "sonnet"   # default model for student agents; a persona card can override it
+# personas = ["lena", "arjun"]   # optional subset of personas/*.toml; default: all cards
+
+# One entry per gradable unit. Sub-questions may be listed separately (Q2a, Q2b) or together.
+[[questions]]
+id = "Q1"
+points = 6
+topic = "Iterated dominance"
+
+[[questions]]
+id = "Q2a"
+points = 4
+topic = "Pure Nash equilibrium"
+
+[[questions]]
+id = "Q2b"
+points = 6
+topic = "Mixed Nash equilibrium"
+
+[[questions]]
+id = "Q2c"
+points = 2
+topic = "Equilibrium payoffs"
+
+[[questions]]
+id = "Q3"
+points = 7
+topic = "Proof: dominant strategies"
+
+# Course materials in lecture order. `week` lets a persona's `coverage` decide what they studied.
+# Materials without `week` are given to every student.
+[[materials]]
+path = "materials/example/week1-strategic-games.md"
+week = 1
+
+[[materials]]
+path = "materials/example/week2-nash-equilibrium.md"
+week = 2
+
+[[materials]]
+path = "materials/example/week3-mixed-strategies.md"
+week = 3

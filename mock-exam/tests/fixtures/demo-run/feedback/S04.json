@@ -1,0 +1,41 @@
+{
+  "sid": "S04",
+  "overall": {
+    "difficulty": 5,
+    "length": "too long",
+    "fairness": 2,
+    "comment": "The proof question was nothing like the old exams. Too much for 30 minutes."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 2,
+      "difficulty": 5,
+      "comment": "Did not know how to start."
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q3",
+      "clarity": 2,
+      "difficulty": 5,
+      "comment": "We never had to write proofs like this."
+    }
+  ]
+}

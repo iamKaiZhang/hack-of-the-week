@@ -1,0 +1,41 @@
+{
+  "sid": "S01",
+  "overall": {
+    "difficulty": 2,
+    "length": "about right",
+    "fairness": 4,
+    "comment": "Fair quiz. Q2c was the only place I had to guess what you meant; I went with the mixed equilibrium."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 2,
+      "comment": "Assumed strict dominance since that is IESDS."
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 1,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 5,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 2,
+      "comment": "Which equilibrium? There are three."
+    },
+    {
+      "qid": "Q3",
+      "clarity": 4,
+      "difficulty": 3,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+
+# Editor / vault
+.obsidian/workspace*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Secrets and environment
+.env
+.env.local
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Claude Code local
+.claude/settings.local.json
+
+# Unreleased exams and course materials stay local; only the example is tracked
+exams/*
+!exams/example/
+materials/*
+!materials/example/
+
+# Run outputs (answers, grades, dashboards)
+runs/

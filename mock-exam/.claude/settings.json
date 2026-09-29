@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(zotero-lookup)",
+      "Skill(kai-writing-style)",
+      "Skill(karma-expert)",
+      "WebSearch",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:dl.acm.org)",
+      "WebFetch(domain:www.nature.com)",
+      "Bash(python3 *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(pytest *)",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Edit(runs/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_student.py\"; if [ ! -f \"$f\" ]; then d=\"$PWD\"; while [ \"$d\" != / ] && [ ! -f \"$d/.claude/hooks/guard_student.py\" ]; do d=$(dirname \"$d\"); done; f=\"$d/.claude/hooks/guard_student.py\"; fi; [ -f \"$f\" ] || exit 0; exec python3 \"$f\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read|Write|Edit|Glob|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/log_activity.py\"; if [ ! -f \"$f\" ]; then d=\"$PWD\"; while [ \"$d\" != / ] && [ ! -f \"$d/.claude/hooks/log_activity.py\" ]; do d=$(dirname \"$d\"); done; f=\"$d/.claude/hooks/log_activity.py\"; fi; [ -f \"$f\" ] || exit 0; exec python3 \"$f\""
+          }
+        ]
+      }
+    ]
+  }
+}

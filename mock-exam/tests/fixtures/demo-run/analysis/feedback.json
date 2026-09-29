@@ -1,0 +1,78 @@
+{
+  "summary": "Two wording problems dominate: Q2c does not say which of the three equilibria it means, and Q1 does not say strict or weak dominance. Half the class ran out of time, mostly inside Q3, and the students who noticed the ambiguities lost the most time resolving them.",
+  "issues": [
+    {
+      "qid": "Q2c",
+      "kind": "ambiguity",
+      "severity": "high",
+      "students": [
+        "S01",
+        "S03",
+        "S05",
+        "S07",
+        "S08"
+      ],
+      "summary": "'Player 1's equilibrium payoff' is undefined in a game with three equilibria. Students answered 4, 2 or 4/3 depending on the equilibrium they picked; the rubric only fully credits the mixed one.",
+      "quotes": [
+        {
+          "sid": "S03",
+          "text": "Undefined: the game has three equilibria."
+        },
+        {
+          "sid": "S08",
+          "text": "Which equilibrium? I took the one from (a)."
+        }
+      ]
+    },
+    {
+      "qid": "Q1",
+      "kind": "ambiguity",
+      "severity": "high",
+      "students": [
+        "S01",
+        "S03",
+        "S04"
+      ],
+      "summary": "'Eliminate dominated strategies' permits weak dominance, which removes L and ends at (M, C) instead of {U,M} x {L,C}. One student followed that reading and was capped at 4 points.",
+      "quotes": [
+        {
+          "sid": "S03",
+          "text": "'Dominated': strictly or weakly? The answers differ."
+        }
+      ]
+    },
+    {
+      "qid": "overall",
+      "kind": "length",
+      "severity": "medium",
+      "students": [
+        "S03",
+        "S04",
+        "S05",
+        "S08"
+      ],
+      "summary": "4 of 8 students ran out of time; in every case Q3 was the casualty. Q1 took 1.1x its time budget on average.",
+      "quotes": [
+        {
+          "sid": "S05",
+          "text": "I needed to read Q3 several times, and then there was no time left."
+        }
+      ]
+    },
+    {
+      "qid": "Q3",
+      "kind": "other",
+      "severity": "low",
+      "students": [
+        "S05"
+      ],
+      "summary": "The single long sentence stating Q3 slowed down the non-native readers.",
+      "quotes": [
+        {
+          "sid": "S05",
+          "text": "Long sentence, hard to parse quickly."
+        }
+      ]
+    }
+  ]
+}

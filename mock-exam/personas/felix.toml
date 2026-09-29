@@ -1,0 +1,27 @@
+id = "felix"
+name = "Felix"
+age = 24
+program = "MSc Energy Science and Technology, 1st semester (BSc Mechanical Engineering)"
+level = "master"
+background = "mechanical engineering"
+focus = "markets"
+ability = "median"
+languages = "German (native), English (C1)"
+interests = ["energy trading", "electricity markets", "sailing"]
+motivation = "Wants to work in energy trading; took the course for the auction and market-design lectures."
+
+[preparation]
+coverage = 0.85
+lectures_attended = 0.7
+exercises = "some"
+old_exams = true
+
+[profile]
+strengths = ["turning a word problem into payoffs", "intuition for prices and incentives", "careful bookkeeping of costs"]
+weaknesses = ["dynamic and stochastic games felt abstract", "rusty on linear programming duality"]
+misconceptions = ["Mixes up cost minimization and payoff maximization when an exam switches between the two conventions."]
+
+[exam_behavior]
+speed = "average"
+strategy = "Starts with the exercise that looks like a market or pricing problem, then the rest in order."
+under_pressure = "Writes the economic intuition in words when the math does not come."

@@ -1,0 +1,41 @@
+{
+  "sid": "S05",
+  "overall": {
+    "difficulty": 3,
+    "length": "too long",
+    "fairness": 4,
+    "comment": "The content was fine, but I needed to read Q3 several times, and then there was no time left."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 5,
+      "difficulty": 3,
+      "comment": ""
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 2,
+      "comment": "Pure or mixed equilibrium?"
+    },
+    {
+      "qid": "Q3",
+      "clarity": 3,
+      "difficulty": 4,
+      "comment": "Long sentence, hard to parse quickly."
+    }
+  ]
+}

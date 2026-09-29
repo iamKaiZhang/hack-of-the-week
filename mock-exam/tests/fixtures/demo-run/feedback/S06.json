@@ -1,0 +1,41 @@
+{
+  "sid": "S06",
+  "overall": {
+    "difficulty": 2,
+    "length": "about right",
+    "fairness": 5,
+    "comment": "Straightforward. Good mix of computation and proof."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 1,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 5,
+      "difficulty": 1,
+      "comment": ""
+    },
+    {
+      "qid": "Q3",
+      "clarity": 5,
+      "difficulty": 3,
+      "comment": ""
+    }
+  ]
+}

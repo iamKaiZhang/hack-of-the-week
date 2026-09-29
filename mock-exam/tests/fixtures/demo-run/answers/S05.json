@@ -1,0 +1,43 @@
+{
+  "sid": "S05",
+  "answers": [
+    {
+      "qid": "Q1",
+      "status": "answered",
+      "answer": "Remove $R$ (worse than $C$ for player 2 in every row). Then $D$ is worse than $M$. Remaining: rows $U, M$, columns $L, C$.",
+      "minutes": 8,
+      "confidence": 0.75
+    },
+    {
+      "qid": "Q2a",
+      "status": "answered",
+      "answer": "Best responses: against $L$ player 1 picks $T$, against $R$ picks $B$; against $T$ player 2 picks $L$, against $B$ picks $R$. Pure NE: $(T,L)$ and $(B,R)$.",
+      "minutes": 5,
+      "confidence": 0.9
+    },
+    {
+      "qid": "Q2b",
+      "status": "answered",
+      "answer": "Let $p=P(T)$, $q=P(L)$. Player 2 indifferent: $2p = 4(1-p) \\Rightarrow p = 2/3$. Player 1 indifferent: $4q = 2(1-q) \\Rightarrow q = 1/3$. So $\\sigma_1 = (2/3, 1/3)$, $\\sigma_2 = (1/3, 2/3)$.",
+      "minutes": 7,
+      "confidence": 0.85
+    },
+    {
+      "qid": "Q2c",
+      "status": "answered",
+      "answer": "In the mixed equilibrium: $4 \\cdot 1/3 = 4/3$. (Not sure if you mean the pure ones.)",
+      "minutes": 2,
+      "confidence": 0.6
+    },
+    {
+      "qid": "Q3",
+      "status": "partial",
+      "answer": "If everyone plays the dominant strategy, nobody wants to change, so it is Nash. Other profiles: someone is not playing dominant and",
+      "minutes": 8,
+      "confidence": 0.4
+    }
+  ],
+  "minutes_used": 30,
+  "ran_out_of_time": true,
+  "notes": "Reading the long question texts took me longer than expected."
+}

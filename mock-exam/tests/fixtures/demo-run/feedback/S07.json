@@ -1,0 +1,41 @@
+{
+  "sid": "S07",
+  "overall": {
+    "difficulty": 2,
+    "length": "about right",
+    "fairness": 5,
+    "comment": "Nice quiz. Q2c should say which equilibrium."
+  },
+  "questions": [
+    {
+      "qid": "Q1",
+      "clarity": 4,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2a",
+      "clarity": 5,
+      "difficulty": 1,
+      "comment": ""
+    },
+    {
+      "qid": "Q2b",
+      "clarity": 4,
+      "difficulty": 2,
+      "comment": ""
+    },
+    {
+      "qid": "Q2c",
+      "clarity": 3,
+      "difficulty": 1,
+      "comment": "Had to guess which equilibrium."
+    },
+    {
+      "qid": "Q3",
+      "clarity": 5,
+      "difficulty": 2,
+      "comment": ""
+    }
+  ]
+}
